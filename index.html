@@ -364,8 +364,10 @@ html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
 .stage img.round{box-shadow:none;border-radius:0;filter:drop-shadow(0 26px 30px rgba(60,40,10,.35));max-height:70vh}
 .solo{all:unset;cursor:pointer;grid-column:1/-1;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:18px;padding:8px 0 40px}
 .solo:focus-visible{outline:3px solid var(--accent);outline-offset:6px;border-radius:20px}
-.sphone{display:block;height:min(66vh,620px);aspect-ratio:600/1298;background:#151513;border-radius:40px;padding:10px;box-shadow:0 40px 60px -30px rgba(30,20,60,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.sphone img,.sphone video{display:block;width:100%;height:100%;object-fit:cover;border-radius:31px;background:#fff}
+.sphone{display:block;position:relative;height:min(66vh,620px);aspect-ratio:600/1298;background:#151513;border-radius:16%/7.4%;padding:2.6%;box-sizing:border-box;box-shadow:0 40px 60px -30px rgba(30,20,60,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sphone img,.sphone video{display:block;width:100%;height:100%;object-fit:cover;border-radius:13.5%/6.2%;background:#fff}
+.sphone:not(.stab)::after{content:"";position:absolute;top:2.7%;left:50%;transform:translateX(-50%);width:30%;height:3.9%;background:#0b0b0a;border-radius:999px;pointer-events:none}
+.sphone:not(.stab){box-shadow:inset 0 0 0 1.5px #3b3a37,0 40px 60px -30px rgba(30,20,60,.55)}
 .solos{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:clamp(24px,4vw,56px);padding-inline-start:calc(clamp(70px,9vw,120px) + 22px)}
 .solos .solo{padding-top:0}
 .solos .sphone{height:min(58vh,560px)}
@@ -374,8 +376,7 @@ html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
 .solos .sphone.stab img{border-radius:14px}
 @media (max-width:900px){.solos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px;padding-inline-start:0;justify-items:center}
  .solos .solo{grid-column:auto;gap:10px;padding-bottom:10px;width:100%;justify-self:stretch}
- .solos .sphone{height:auto;width:100%;max-width:240px;border-radius:26px;padding:6px}
- .solos .sphone img,.solos .sphone video{border-radius:20px}
+ .solos .sphone{height:auto;width:100%;max-width:240px}
  .solos .solo:has(.stab){grid-column:1/-1}
  .solos .sphone.stab{max-width:none;width:100%;border-radius:18px;padding:6px}
  .solos .sphone.stab img{border-radius:12px}
@@ -567,14 +568,6 @@ const P=[
   outcome:"A complete travel app UI, from onboarding and sign-in to the home page, place details and booking, with a clickable prototype and a full case study.",
   tools:["Figma","Prototyping","Wireframing"],
   role:"UI design: persona, moodboard, wireframes, hi-fi screens and prototype.",type:"Personal project"},
- {id:"pep",cat:"ui",wip:true,title:"pep",sub:"Workout tracker app",year:"2026",
-  imgs:["img/pep-home.webp","img/pep-workouts.webp","img/pep-session.webp","img/pep-weight.webp","img/pep-stats.webp","img/pep-history.webp"],
-  overview:"A playful workout tracker for home calisthenics, gym days and cardio, with a weekly goal, weight tracking and progress you can see.",
-  challenge:"Logging a workout usually feels like filling a spreadsheet, so people stop after a week. The app had to make every set quick to log and every bit of progress visible.",
-  approach:"Bold, friendly neo-brutal cards with thick outlines, hard shadows and bright orange, sun yellow, lilac and mint. Big plus and minus buttons for rounds and sets, 'last time' and 'best' shown on every exercise, a weekly goal card, a weight trend with a 7-day average, and a history log.",
-  outcome:"A working app with home, workouts, session logging, weight, stats and history screens. It is still in development.",
-  tools:["Figma","UI design","Prototype"],
-  role:"UI/UX design and build.",type:"Personal project"},
  {id:"sohmenu",cat:"ui",tablet:true,title:"Soh Interactive Menu",sub:"iPad ordering kiosk",year:"2026",link:"https://soh-ksa.vercel.app/",
   imgs:["img/soh-board.webp","img/soh-burger.webp","img/soh-sands.webp","img/soh-fries.webp","img/soh-drinks.webp","img/soh-wheel.webp","img/soh-order-full.webp","img/soh-saver.webp"],
   overview:"An interactive iPad menu for Soh, a burger restaurant, where customers browse, build their order and hand a ready bill to the cashier.",
@@ -689,11 +682,6 @@ const AR_P={
   approach:"بدأت من شخصية مستخدم: مبتدئ بمستوى A2 لديه عشر دقائق يوميًا، ثم مررت بلوحة الإلهام والإطارات السلكية والتصميم النهائي والنموذج التفاعلي في فيقما. قصة قصيرة واحدة يتدرّب عليها بالمهارات الأربع، مع ترجمة الكلمة بلمسة، ونص صوتي مباشر، ونقاط وسلسلة أيام في شاشة رئيسية واحدة. الأصفر الدافئ والأبيض، وموجة ناعمة واحدة تتكرر في كل بطاقة وزر، تجعل الواجهة هادئة وودودة.",
   outcome:"واجهة جوال كاملة من شاشة البداية والتعريف إلى القراءة والاستماع والدروس المحفوظة والإعدادات، مع دراسة حالة كاملة على الإنترنت. وتوجد نسخة تجريبية بسيطة من التطبيق، لكنها لا تعمل بالكامل بعد.",
   tools:["Figma","النماذج التفاعلية","البحث بمساعدة الذكاء الاصطناعي"],role:"تصميم UI/UX: شخصية المستخدم والإطارات السلكية والتصميم البصري والنموذج التفاعلي.",type:"مشروع شخصي"},
- pep:{title:"pep",sub:"تطبيق لتتبّع التمارين",overview:"تطبيق مرح لتتبّع التمارين في البيت والنادي والكارديو، مع هدف أسبوعي وتتبّع للوزن وتقدّم تشوفه بعينك.",
-  challenge:"تسجيل التمرين عادة يشبه تعبئة جدول، فيترك الناس التطبيق بعد أسبوع. فكان لازم يكون تسجيل كل مجموعة سريعًا، وكل تقدّم واضحًا.",
-  approach:"بطاقات جريئة وودودة بحدود سميكة وظلال حادة وألوان برتقالي وأصفر وليلكي ونعناعي. أزرار زائد وناقص كبيرة للجولات والمجموعات، و«آخر مرة» و«أفضل رقم» تحت كل تمرين، وبطاقة للهدف الأسبوعي، ومنحنى للوزن مع متوسط سبعة أيام، وسجل للتمارين.",
-  outcome:"تطبيق يعمل بشاشات الرئيسية والتمارين وتسجيل الجلسة والوزن والإحصائيات والسجل. وهو قيد التطوير.",
-  tools:["Figma","تصميم الواجهات","نموذج تفاعلي"],role:"تصميم وتنفيذ الواجهات.",type:"مشروع شخصي"},
  sohmenu:{title:"منيو سو التفاعلي",sub:"منيو طلبات على الآيباد",overview:"منيو تفاعلي على الآيباد لمطعم سو للبرجر، يتصفح فيه العميل الأصناف ويبني طلبه ويعطي الفاتورة جاهزة للكاشير.",
   challenge:"أن يكون الطلب سريعًا وممتعًا، وأن تبقى كل شاشة بروح هوية سو، وأن يعمل حتى بدون إنترنت.",
   approach:"لوحة بستة ملصقات للأقسام تقود لصفحات مثل البرجر المعلّق على خيط، والبطاطس، والصوصات، وثلاجة المشروبات. عجلة «محتار وش تاكل؟» تقترح وجبة، والفاتورة تتكوّن مع الطلب، وألوان الهوية وخطوطها المرسومة والشخصية تظهر في كل شاشة. ويعمل بدون إنترنت كتطبيق ويب.",
