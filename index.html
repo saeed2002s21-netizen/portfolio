@@ -13,6 +13,8 @@
 <style>body{margin:0}</style>
 </head>
 <body>
+
+
 <style>
 /* Layout: a bright studio wall. The first screen is a bento board: Saeed's name and pitch on the big tile, the four disciplines as square tiles that already show the real work moving, plus tools and a live Makkah clock. A grouped work index with cursor previews, a deck viewer for presentations, and a dock (the signature) that magnifies like a desktop dock and navigates the whole site. Committed light look. */
 :root{
@@ -342,6 +344,14 @@ html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
 .card:hover .im img{transform:scale(1.04)}
 
 #sv[data-k="art"] .cards{gap:clamp(20px,4vw,60px) var(--gap)}
+#sv[data-k="graphic"] .card{background:none;border:0;box-shadow:none;overflow:visible}
+#sv[data-k="graphic"] .card:hover{transform:none;box-shadow:none}
+#sv[data-k="graphic"] .card .im{background:none!important;aspect-ratio:auto;overflow:visible;display:block}
+#sv[data-k="graphic"] .card .im img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:14px;box-shadow:0 18px 34px -20px rgba(0,0,0,.45);display:block}
+#sv[data-k="graphic"] .card:hover .im img{transform:translateY(-4px)}
+#sv[data-k="graphic"] .card .tx{padding:14px 2px 6px}
+#sv[data-k="graphic"] .card .tx p{display:none}
+@media(min-width:900px){#sv[data-k="graphic"] .cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:start}#sv[data-k="graphic"] .card{grid-column:auto!important}}
 #sv[data-k="art"] .card{background:none;border:0;box-shadow:none;overflow:visible}
 #sv[data-k="art"] .card:hover{transform:none;box-shadow:none}
 #sv[data-k="art"] .card .im{background:none!important;overflow:visible}
