@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Saeed Alsuhaimi · Visual Artist & Digital Designer from Makkah. Presentations, UI/UX, graphic design and hand embroidery.">
+<meta property="og:title" content="Saeed Alsuhaimi · Portfolio">
+<meta property="og:description" content="Visual Artist & Digital Designer · فنان بصري ومصمم رقمي">
+<meta property="og:image" content="img/qaf-1.jpg">
+<meta name="theme-color" content="#F5F4F0">
+<title>Saeed Alsuhaimi Studio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Caveat:wght@600;700&family=Marhey:wght@500;600&display=swap">
+<style>body{margin:0}</style>
+</head>
+<body>
+<style>
+/* Layout: a bright studio wall. The first screen is a bento board: Saeed's name and pitch on the big tile, the four disciplines as square tiles that already show the real work moving, plus tools and a live Makkah clock. A grouped work index with cursor previews, a deck viewer for presentations, and a dock (the signature) that magnifies like a desktop dock and navigates the whole site. Committed light look. */
+:root{
+  color-scheme:light;
+  --bg:#F5F4F0; --surface:#FFFFFF; --ink:#141413; --ink-2:#5E5C56; --line:#E2E0D9;
+  --accent:#E8571A; --hot:#FF8A4C; --lilac:#E6E3FF; --peach:#FFE7D6; --mint:#D8F1E2; --blush:#FFE2D7; --butter:#FFEDAE;
+  --disp:"Syne","Instrument Sans",system-ui,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+  --note:"Caveat","Comic Sans MS",cursive;
+  --r:22px; --gap:clamp(10px,1.4vw,16px);
+}
+html[lang="ar"]{--disp:"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif;--body:"IBM Plex Sans Arabic","Instrument Sans",Tahoma,sans-serif;--note:"Marhey","Caveat",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html[lang="ar"] body{line-height:1.8}
+h1,h2,h3,h4{font-family:var(--disp);margin:0;line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4{letter-spacing:0;line-height:1.3}
+p{margin:0}
+a{color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1320px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.note{font-family:var(--note);font-weight:700;letter-spacing:0;text-transform:none}
+html[lang="ar"] .note{font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);font:600 15px var(--body);text-decoration:none;cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.dark:hover{background:var(--accent);border-color:var(--accent)}
+.btn svg{width:16px;height:16px}
+html[dir="rtl"] .flip{transform:scaleX(-1)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:40;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(12px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 17px var(--disp);letter-spacing:-.02em}
+html[lang="ar"] .brand{letter-spacing:0}
+.brand .mk{position:relative;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;flex:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.brand .mk::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1.6px dashed rgba(255,255,255,.75)}
+.brand .mk b{font:800 17px/1 "Syne",sans-serif;position:relative;top:-.5px}
+html[lang="ar"] .brand .mk b{font:700 14px/1 "Alexandria",sans-serif;top:-3px}
+.brand{gap:0;font-size:19px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-inline-start:4px;align-self:flex-end;margin-bottom:6px;transition:transform .3s}
+.brand:hover .dot{transform:scale(1.5)}
+html[lang="ar"] .brand .dot{margin-bottom:1px}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink-2);padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.avail i{width:8px;height:8px;border-radius:50%;background:#22B35E;box-shadow:0 0 0 0 rgba(34,179,94,.5);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(34,179,94,0)}100%{box-shadow:0 0 0 0 rgba(34,179,94,0)}}
+.topR{display:flex;align-items:center;gap:8px}
+.chipbtn{all:unset;cursor:pointer;height:38px;padding:0 15px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:600 14px var(--body);display:inline-flex;align-items:center}
+.chipbtn:hover{border-color:var(--ink)}
+.chipbtn{white-space:nowrap;gap:8px}.chipbtn svg{width:14px;height:14px}
+.chipbtn:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+@media (max-width:640px){.avail{display:none}}
+
+/* ===== hero bento ===== */
+.hero{padding-block:clamp(10px,2vw,22px) clamp(40px,6vw,72px)}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:auto;gap:var(--gap)}
+.tile{position:relative;border-radius:var(--r);background:var(--surface);overflow:hidden;min-width:0;animation:rise .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0)*70ms)}
+@keyframes rise{from{transform:translateY(26px) scale(.98)}to{transform:none}}
+.b-name{grid-column:1/3;grid-row:1/3;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:var(--surface);border:1px solid var(--line)}
+.b-name .kick{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+html[lang="ar"] .b-name .kick{letter-spacing:0;font-size:15px}
+.b-name .kick b{width:26px;height:2px;background:var(--accent)}
+.b-name h1{font-size:clamp(46px,6.6vw,104px);letter-spacing:-.045em;line-height:.92;margin-top:16px}
+html[lang="ar"] .b-name h1{line-height:1.2;letter-spacing:0;font-size:clamp(44px,6vw,92px)}
+html[lang="ar"] .b-name h1 .w{margin-bottom:-.05em}
+.b-name h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.12em .04em .36em;margin:-.12em -.04em -.36em}
+.b-name h1 .w>span{display:inline-block;animation:wordup .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*90ms + 150ms)}
+@keyframes wordup{from{transform:translateY(105%)}to{transform:none}}
+.b-name h1 .hl{color:var(--accent)}
+.b-name .role{font:600 clamp(18px,1.7vw,22px) var(--disp);margin-top:18px;letter-spacing:-.01em}
+html[lang="ar"] .b-name .role{letter-spacing:0}
+.b-name .role .note{color:#FF9A62;font-size:1.3em;margin-inline-start:6px}
+.b-name .pitch{color:var(--ink-2);max-width:46ch;margin-top:10px}
+.b-name .acts{display:flex;flex-wrap:wrap;gap:10px}
+/* discipline squares */
+.b-sec{all:unset;cursor:pointer;position:relative;display:block;aspect-ratio:1;border-radius:var(--r);overflow:hidden;background:var(--c);animation:rise .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0)*70ms);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.b-sec:hover{transform:translateY(-4px)}
+.b-sec:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.b-sec .lab{position:absolute;inset-inline:14px;bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;z-index:5;padding:10px 10px 10px 16px;border-radius:999px;background:color-mix(in srgb,#fff 88%,transparent);backdrop-filter:blur(6px);font:700 clamp(14px,1.25vw,17px) var(--disp);letter-spacing:-.01em;box-shadow:0 8px 22px -14px rgba(0,0,0,.4)}
+html[dir="rtl"] .b-sec .lab{padding:10px 16px 10px 10px}
+html[lang="ar"] .b-sec .lab{letter-spacing:0}
+.b-sec .lab i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:transform .3s,background .3s}
+.b-sec .lab i svg{width:14px;height:14px}
+.b-sec:hover .lab i{background:var(--accent);transform:rotate(-45deg)}
+html[dir="rtl"] .b-sec:hover .lab i{transform:rotate(45deg)}
+.vis{position:absolute;inset:0;bottom:64px}
+/* UI: two phones */
+.ph{position:absolute;top:12%;width:38%;aspect-ratio:600/1298;border-radius:14%/6.5%;background:#151513;padding:2.4%;box-shadow:0 22px 30px -18px rgba(20,20,60,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ph img{width:100%;height:100%;object-fit:cover;border-radius:12%/5.6%}
+.ph.a{left:22%;transform:rotate(-7deg);z-index:2}
+.ph.b{left:44%;top:16%;transform:rotate(8deg);z-index:1}
+.b-sec:hover .ph.a{transform:rotate(-11deg) translate(-8%,-3%)}
+.b-sec:hover .ph.b{transform:rotate(12deg) translate(8%,-2%)}
+/* presentations: a live deck */
+.slides{position:absolute;left:9%;right:9%;top:16%}
+.slides img{position:absolute;inset:0;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;box-shadow:0 18px 26px -16px rgba(0,0,0,.6);transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s}
+.slides img[data-p="0"]{transform:none;z-index:3}
+.slides img[data-p="1"]{transform:translateY(-12%) scale(.92);z-index:2;opacity:.9}
+.slides img[data-p="2"]{transform:translateY(-22%) scale(.84);z-index:1;opacity:.7}
+.slides img[data-p="3"]{transform:translateY(14%) scale(1.04);z-index:4;opacity:0}
+/* graphic: fan of posts */
+.fan{position:absolute;left:50%;top:13%;width:42%}
+.fan img{position:absolute;inset:0;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;border:4px solid #fff;box-shadow:0 18px 26px -16px rgba(0,0,0,.5);transform-origin:50% 120%;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.fan img:nth-child(1){transform:translateX(-50%) rotate(-14deg)}
+.fan img:nth-child(2){transform:translateX(-50%) rotate(0)}
+.fan img:nth-child(3){transform:translateX(-50%) rotate(14deg)}
+.b-sec:hover .fan img:nth-child(1){transform:translateX(-62%) rotate(-24deg)}
+.b-sec:hover .fan img:nth-child(3){transform:translateX(-38%) rotate(24deg)}
+/* art: the hoop */
+.hoopv{position:absolute;left:50%;top:50%;width:66%;aspect-ratio:1;transform:translate(-50%,-48%);transition:transform 1.2s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 18px 18px rgba(80,40,10,.32))}
+.b-sec:hover .hoopv{transform:translate(-50%,-48%) rotate(-12deg) scale(1.04)}
+.hoopv img{width:100%;height:100%}
+.thread{position:absolute;inset:0;pointer-events:none}
+.thread path{fill:none;stroke:var(--hot);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:4 7}
+/* small tiles */
+.b-tools{grid-column:1/3;padding:20px 22px;display:flex;flex-direction:column;gap:14px;border:1px solid var(--line)}
+.t-h{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+html[lang="ar"] .t-h{letter-spacing:0;font-size:14px}
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+.tool{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:var(--bg);font:600 14px "Instrument Sans",sans-serif;transition:transform .25s}
+html[dir="rtl"] .tool{padding:8px 10px 8px 14px}
+.tool:hover{transform:translateY(-2px) rotate(-2deg)}
+.tool i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font:600 13px/1 "Instrument Sans",sans-serif;letter-spacing:-.02em;font-style:normal;color:#fff;background:var(--c)}
+.b-bi{padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;background:var(--butter);position:relative}
+.b-bi .gl{display:flex;align-items:baseline;gap:10px;line-height:1;direction:ltr}
+.b-bi .gl b{font:800 clamp(44px,4.4vw,62px)/1 "Alexandria",sans-serif;color:var(--ink)}
+.b-bi .gl i{font:800 clamp(44px,4.4vw,62px)/1 "Syne",sans-serif;font-style:normal;color:var(--accent);transform:rotate(-8deg);display:inline-block}
+.b-bi small{color:#5B4E1E;font-size:14px;line-height:1.5}
+.b-clock{padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;background:var(--ink);color:#fff}
+.b-clock .t-h{color:#B9B7B0}
+.b-clock .time{font:700 clamp(30px,3.2vw,44px)/1 "Syne",sans-serif;letter-spacing:-.03em;font-variant-numeric:tabular-nums;direction:ltr;text-align:start}
+.b-clock small{color:#B9B7B0;font-size:13px}
+.b-talk{all:unset;grid-column:span 2;cursor:pointer;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;background:var(--accent);color:#fff;border-radius:var(--r);animation:rise .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0)*70ms);transition:transform .3s}
+.b-talk:hover{transform:translateY(-4px)}
+.b-talk:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.b-talk .t-h{color:#FFE1D0}
+.b-talk b{font:700 clamp(22px,2.2vw,30px)/1.1 var(--disp);letter-spacing:-.02em}
+html[lang="ar"] .b-talk b{letter-spacing:0;line-height:1.4}
+.b-talk svg{width:26px;height:26px;align-self:flex-end}
+@media (max-width:980px){
+ .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .b-name,.b-tools{grid-column:1/-1;grid-row:auto}
+}
+@media (max-width:560px){
+ .b-sec .lab{inset-inline:8px;bottom:8px;padding:7px 7px 7px 12px;font-size:13px}
+ html[dir="rtl"] .b-sec .lab{padding:7px 12px 7px 7px}
+ .b-sec .lab i{width:24px;height:24px}
+ .vis{bottom:46px}
+ .b-name h1{font-size:clamp(40px,12vw,58px)}
+ .b-name{gap:16px;padding:20px 20px 22px}
+ .b-name h1{margin-top:8px}
+ .b-name .role{margin-top:10px;font-size:17px}
+ .b-name .pitch{font-size:15px;margin-top:6px}
+ .b-name .acts .btn{height:42px;padding:0 16px;font-size:14px}
+}
+.lab .short{display:none}
+
+/* marquee */
+.marq{overflow:hidden;border-block:1.5px solid var(--ink);background:var(--butter);padding-block:14px}
+.marq .row{display:flex;width:max-content;animation:marq 38s linear infinite}
+html[dir="rtl"] .marq .row{animation-name:marqr}
+.marq span{display:inline-flex;align-items:center;gap:22px;padding-inline:11px;font:700 clamp(20px,2.4vw,30px) var(--disp);letter-spacing:-.02em;white-space:nowrap}
+html[lang="ar"] .marq span{letter-spacing:0}
+.marq span svg{width:20px;height:20px;color:var(--hot)}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes marqr{to{transform:translateX(50%)}}
+
+/* section heads */
+.sec{padding-block:clamp(64px,9vw,120px) 0}
+.shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 30px;margin-bottom:clamp(26px,4vw,44px)}
+.shead h2{font-size:clamp(40px,6.4vw,92px);letter-spacing:-.045em}
+html[lang="ar"] .shead h2{letter-spacing:0;line-height:1.25}
+.shead h2 .note{font-size:.42em;color:var(--hot);letter-spacing:0;vertical-align:middle;margin-inline-start:10px}
+.shead p{max-width:44ch;color:var(--ink-2)}
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+@keyframes rv{from{transform:translateY(40px);opacity:.25}to{transform:none;opacity:1}}
+
+/* work index, grouped by discipline */
+.grp{border-top:1.5px solid var(--ink);padding-top:18px;margin-top:clamp(24px,3vw,40px)}
+.grp:first-child{margin-top:0}
+.ghead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.ghead h3{font-size:clamp(22px,2.4vw,30px);display:flex;align-items:center;gap:12px}
+.ghead h3 i{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.15)}
+.ghead .chipbtn{height:34px;font-size:13px}
+.rows{list-style:none;margin:0;padding:0}
+.rowi{all:unset;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,.9fr) 40px;align-items:center;gap:16px;width:100%;box-sizing:border-box;padding:18px 10px;border-bottom:1px solid var(--line);position:relative;transition:background .25s,padding .3s}
+.rowi:hover{background:var(--surface);padding-inline:18px}
+.rowi:focus-visible{outline:2.5px solid var(--accent);outline-offset:-2px}
+.rowi .n{font:600 13px "Syne",sans-serif;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rowi .ti{font:700 clamp(19px,2vw,26px)/1.15 var(--disp);letter-spacing:-.02em}
+html[lang="ar"] .rowi .ti{letter-spacing:0;line-height:1.5}
+.rowi .ca{color:var(--ink-2);font-size:15px}
+.rowi .yr{font-size:14px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rowi .go{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;transition:background .25s,color .25s,transform .3s}
+.rowi .go svg{width:15px;height:15px}
+.rowi:hover .go{background:var(--ink);color:#fff;transform:rotate(-45deg)}
+html[dir="rtl"] .rowi:hover .go{transform:rotate(45deg)}
+.rowi .th{display:none}
+@media (max-width:760px){
+ .rowi{grid-template-columns:72px minmax(0,1fr) 34px;gap:12px;padding:12px 4px}
+ .rowi .n,.rowi .yr,.rowi .ca{display:none}
+ .rowi .th{display:block;width:72px;aspect-ratio:1;border-radius:12px;object-fit:cover}
+ .rowi .ti small{display:block;font:500 13px var(--body);color:var(--ink-2);letter-spacing:0;margin-top:4px}
+ .rowi .go{width:32px;height:32px}
+}
+@media (min-width:761px){.rowi .ti small{display:none}}
+.peek{position:fixed;left:0;top:0;width:300px;aspect-ratio:4/3;border-radius:16px;overflow:hidden;pointer-events:none;z-index:30;opacity:0;transform:translate(-50%,-50%) scale(.6);transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 30px 50px -20px rgba(0,0,0,.45);background:var(--surface)}
+.peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.peek img{width:100%;height:100%;object-fit:cover}
+@media (hover:none){.peek{display:none}}
+
+/* about */
+.about{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.statement{font:700 clamp(28px,3.6vw,50px)/1.12 var(--disp);letter-spacing:-.03em}
+html[lang="ar"] .statement{letter-spacing:0;line-height:1.55}
+.statement mark{background:none;color:inherit;position:relative;white-space:nowrap}
+.statement mark::after{content:"";position:absolute;left:-.06em;right:-.06em;bottom:.04em;height:.36em;background:var(--c,var(--butter));z-index:-1;border-radius:.1em;transform:skewX(-8deg)}
+.statement mark{z-index:0}
+.ab-body{display:grid;gap:14px;color:var(--ink-2)}
+.ab-body p:first-child{color:var(--ink)}
+.edu{margin-top:26px;display:grid;gap:0}
+.edu div{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding-block:14px;border-top:1px solid var(--line)}
+.edu b{font:700 18px var(--disp);letter-spacing:-.01em}
+html[lang="ar"] .edu b{letter-spacing:0}
+.edu small{grid-column:1;color:var(--ink-2);font-size:14px}
+.edu em{grid-row:1;grid-column:2;font-style:normal;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--mint);align-self:start}
+@media (max-width:860px){.about{grid-template-columns:1fr}}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gap);margin-top:clamp(40px,5vw,64px);list-style:none;padding:0}
+.steps li{background:var(--surface);border-radius:var(--r);padding:22px 20px 24px;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0;transition:transform .3s,background .3s}
+.steps li:hover{transform:translateY(-4px);background:var(--c)}
+.steps .k{font:800 34px/1 "Syne",sans-serif;color:var(--accent);letter-spacing:-.04em}
+.steps b{font:700 19px var(--disp);letter-spacing:-.01em}
+html[lang="ar"] .steps b{letter-spacing:0}
+.steps span{font-size:15px;color:var(--ink-2)}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.ailine{margin-top:var(--gap);background:var(--peach);border-radius:var(--r);padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+.ailine svg{flex:none;width:26px;height:26px;color:var(--accent);margin-top:3px}
+.ailine p{color:#3A2A22;max-width:90ch}
+
+/* contact */
+.contact{margin-top:clamp(64px,9vw,120px);background:var(--ink);color:#fff;border-radius:calc(var(--r) + 10px);padding:clamp(28px,5vw,64px);position:relative;overflow:hidden;overflow:clip}
+.contact .note{color:var(--hot);font-size:clamp(24px,2.6vw,32px)}
+.contact h2{font-size:clamp(48px,8.6vw,132px);letter-spacing:-.05em;line-height:.92;margin-top:10px}
+html[lang="ar"] .contact h2{letter-spacing:0;line-height:1.25;font-size:clamp(44px,7.4vw,110px)}
+.contact h2 span{color:var(--butter)}
+.mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:clamp(26px,4vw,44px)}
+.mailrow .mail{font:600 clamp(20px,2.6vw,34px) var(--body);direction:ltr;unicode-bidi:isolate;color:#fff;text-decoration:none;border-bottom:2px solid var(--hot);overflow-wrap:anywhere;min-width:0}
+.mailrow .btn{background:transparent;color:#fff;border-color:#fff}
+.mailrow .btn:hover{background:#fff;color:var(--ink)}
+.clinks{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:28px;color:#C9C7C0;font-size:15px}
+.clinks a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid #6A6862}
+.contact .blob{position:absolute;inset-inline-end:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--accent),transparent 66%);opacity:.55;pointer-events:none}
+.cgrid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
+@media (max-width:900px){.cgrid{grid-template-columns:minmax(0,1fr)}}
+.cgrid>*{min-width:0}
+.cinfo{grid-column:2;margin-top:calc(-1*clamp(28px,4vw,64px) + 18px)}
+.cinfo .mailrow{margin-top:0}
+@media (max-width:900px){.cinfo{grid-column:auto;margin-top:0}}
+.contact h2{overflow-wrap:break-word}
+.contact .cleft h2{font-size:clamp(44px,5.8vw,92px)}
+html[lang="ar"] .contact .cleft h2{font-size:clamp(40px,5vw,80px)}
+.clead{color:#D6D3CC;max-width:44ch;margin-top:18px;font-size:17px}
+.mailrow{font-size:15px;color:#C9C7C0}
+.mailrow .mail{font-size:clamp(17px,1.6vw,21px)!important}
+.btn.sm{height:38px;padding:0 14px;font-size:13px}
+.cform{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:clamp(20px,2.6vw,30px);display:block}
+.kinds{border:0;margin:0 0 6px;padding:0}
+.kinds legend,.fl span{display:block;font-size:14px;font-weight:600;margin-bottom:8px;padding:0}
+#kinds{display:flex;flex-wrap:wrap;gap:8px}
+.kind{all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);font:600 14px var(--body);transition:background .2s,border-color .2s}
+.kind:hover{border-color:var(--ink)}
+.kind[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.kind:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.fl{display:block;margin-top:16px}
+.fl input,.fl textarea{width:100%;box-sizing:border-box;font:16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid transparent;border-radius:14px;padding:12px 14px;outline:none;transition:border-color .2s,background .2s;resize:vertical}
+.fl input:focus,.fl textarea:focus{border-color:var(--accent);background:#fff}
+.fl input[aria-invalid="true"],.fl textarea[aria-invalid="true"]{border-color:#D23B2E}
+html[dir="rtl"] .fl input[dir="ltr"]{text-align:right}
+.ferr{color:#C4321F;font-size:14px;min-height:1.4em;margin-top:10px}
+.send{width:100%;justify-content:center;height:52px;margin-top:4px}
+.send[disabled]{opacity:.6;cursor:wait}
+.fdone{text-align:center;padding:30px 10px}
+.fdone .tick{width:64px;height:64px;border-radius:50%;background:var(--accent);color:#fff;display:inline-grid;place-items:center;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+.fdone .tick svg{width:30px;height:30px}
+.fdone h3{font-size:28px;margin-top:16px}
+.fdone p{color:var(--ink-2);margin-top:8px}
+@keyframes pop{from{transform:scale(.3)}to{transform:none}}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:26px 120px;color:var(--ink-2);font-size:14px}
+
+/* dock: the signature navigation */
+.dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:45;display:flex;align-items:flex-end;gap:6px;padding:8px;border-radius:24px;background:color-mix(in srgb,#fff 72%,transparent);backdrop-filter:saturate(1.6) blur(16px);border:1px solid rgba(255,255,255,.7);box-shadow:0 18px 40px -18px rgba(20,20,40,.45),inset 0 0 0 1px rgba(0,0,0,.05)}
+.dk{all:unset;cursor:pointer;position:relative;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--c);color:var(--ink);transition:width .18s ease-out,height .18s ease-out;flex:none}
+.dk svg{width:46%;height:46%}
+.dk:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.dk .tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);white-space:nowrap;background:var(--ink);color:#fff;font:600 12px var(--body);padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+.dk:hover .tip,.dk:focus-visible .tip{opacity:1;transform:translateX(-50%)}
+.dk.sep{width:1px;height:34px;background:rgba(0,0,0,.12);border-radius:0;margin-inline:3px;align-self:center;cursor:default;pointer-events:none}
+@media (max-width:560px){.dk{width:40px;height:40px;border-radius:12px}.dock{gap:4px;padding:6px}}
+
+/* overlays */
+.ov{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(30px + env(safe-area-inset-bottom,0px));animation:ovin .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes ovin{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+.ov[hidden]{display:none}
+.ovbar{position:sticky;top:0;z-index:3;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px)}
+.ovbar .wrap{height:66px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.crumb{font-size:14px;color:var(--ink-2);display:flex;align-items:center;gap:8px;min-width:0}
+.crumb b{color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.svhead{padding-block:clamp(20px,3vw,40px) clamp(24px,3vw,40px);display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.svhead .sw{width:clamp(70px,9vw,120px);aspect-ratio:1;border-radius:24px;background:var(--c);display:grid;place-items:center}
+.svhead .sw svg{width:46%;height:46%}
+.svhead h2{font-size:clamp(40px,6.6vw,96px);letter-spacing:-.045em}
+html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
+.svhead p{color:var(--ink-2);margin-top:8px;max-width:60ch}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.card{all:unset;cursor:pointer;display:flex;flex-direction:column;background:var(--surface);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;box-sizing:border-box;min-width:0}
+.card:hover{transform:translateY(-5px);box-shadow:0 24px 40px -26px rgba(0,0,0,.45)}
+.card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.card .im{aspect-ratio:16/10;background:var(--c);overflow:hidden;display:grid;place-items:center}
+.card .im img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.card .im.tall img{width:auto;height:88%;object-fit:contain;border-radius:12px;box-shadow:0 16px 26px -16px rgba(0,0,0,.5)}
+.card:hover .im img{transform:scale(1.04)}
+
+#sv[data-k="art"] .cards{gap:clamp(20px,4vw,60px) var(--gap)}
+#sv[data-k="art"] .card{background:none;border:0;box-shadow:none;overflow:visible}
+#sv[data-k="art"] .card:hover{transform:none;box-shadow:none}
+#sv[data-k="art"] .card .im{background:none!important;overflow:visible}
+#sv[data-k="art"] .card .tx{padding:4px 8px 10px;text-align:center;justify-items:center}
+#sv[data-k="art"] .card .tx p{display:none}
+#cs[data-k="art"] .stage{background:none}
+.card .im.round{aspect-ratio:16/11;position:relative}
+.card .im.round img{position:absolute;inset:0;width:100%;height:100%;padding:6%;box-sizing:border-box;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(60,40,10,.35))}
+.card:hover .im.round img{transform:rotate(-4deg) scale(1.03)}
+.stage img.round{box-shadow:none;border-radius:0;filter:drop-shadow(0 26px 30px rgba(60,40,10,.35));max-height:70vh}
+.solo{all:unset;cursor:pointer;grid-column:1/-1;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:18px;padding:8px 0 40px}
+.solo:focus-visible{outline:3px solid var(--accent);outline-offset:6px;border-radius:20px}
+.sphone{display:block;height:min(66vh,620px);aspect-ratio:600/1298;background:#151513;border-radius:40px;padding:10px;box-shadow:0 40px 60px -30px rgba(30,20,60,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sphone img,.sphone video{display:block;width:100%;height:100%;object-fit:cover;border-radius:31px;background:#fff}
+.solos{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:clamp(24px,4vw,56px);padding-inline-start:calc(clamp(70px,9vw,120px) + 22px)}
+.solos .solo{padding-top:0}
+.solos .sphone{height:min(58vh,560px)}
+.solos .sphone.stab{aspect-ratio:16/9;height:auto;width:min(760px,80vw);border-radius:26px;padding:12px}
+.solos .solo:has(.stab){flex-basis:100%;align-items:flex-start}
+.solos .sphone.stab img{border-radius:14px}
+@media (max-width:900px){.solos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px;padding-inline-start:0;justify-items:center}
+ .solos .solo{grid-column:auto;gap:10px;padding-bottom:10px;width:100%;justify-self:stretch}
+ .solos .sphone{height:auto;width:100%;max-width:240px;border-radius:26px;padding:6px}
+ .solos .sphone img,.solos .sphone video{border-radius:20px}
+ .solos .solo:has(.stab){grid-column:1/-1}
+ .solos .sphone.stab{max-width:none;width:100%;border-radius:18px;padding:6px}
+ .solos .sphone.stab img{border-radius:12px}
+ .solos .scap{font-size:14px;padding:6px 6px 6px 12px;gap:8px;max-width:100%}
+ html[dir="rtl"] .solos .scap{padding:6px 12px 6px 6px}
+ .solos .scap b{white-space:normal;min-width:0;line-height:1.25;font-size:13px;text-align:start}
+ .solos .scap{border-radius:18px}
+ .solos .scap .wip{font:700 11px var(--body);font-style:normal;background:var(--butter);color:#6B4E00;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.cshead .mt span.wipchip{background:var(--butter);border-color:#E8C65A;color:#6B4E00;font-weight:700}
+.scap i{width:26px;height:26px;flex:none}}
+.stage.phone video{height:min(72vh,680px);width:auto;max-width:100%;aspect-ratio:600/1298;object-fit:cover;border-radius:34px;border:10px solid #151513;box-shadow:0 30px 50px -24px rgba(30,20,60,.6);background:#fff}
+@media (max-width:560px){.stage.phone video{height:min(60vh,520px);border-width:7px;border-radius:26px}}
+.thumbs button.tv{position:relative}
+.thumbs button.tv::after{content:"";position:absolute;inset:0;margin:auto;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='white'/%3E%3C/svg%3E") center/16px no-repeat}
+.solo:hover .sphone{transform:translateY(-6px) rotate(-1.5deg)}
+.scap{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 20px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font:700 18px var(--disp)}
+html[dir="rtl"] .scap{padding:8px 20px 8px 8px}
+.scap .wip{font:700 11px var(--body);font-style:normal;background:var(--butter);color:#6B4E00;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.cshead .mt span.wipchip{background:var(--butter);border-color:#E8C65A;color:#6B4E00;font-weight:700}
+.scap i{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center}
+.scap i svg{width:14px;height:14px}
+.solo:hover .scap .wip{font:700 11px var(--body);font-style:normal;background:var(--butter);color:#6B4E00;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.cshead .mt span.wipchip{background:var(--butter);border-color:#E8C65A;color:#6B4E00;font-weight:700}
+.scap i{background:var(--accent)}
+.slidecard{all:unset;cursor:pointer;grid-column:1/-1;display:block;box-sizing:border-box}
+.slidecard:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:var(--r)}
+.sc-im{display:block;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;box-shadow:0 30px 50px -30px rgba(0,0,0,.45);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sc-im img{width:100%;height:100%;object-fit:cover;display:block}
+.slidecard:hover .sc-im{transform:translateY(-5px)}
+.sc-tx{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;padding:16px 4px 34px}
+.sc-tx b{font:700 clamp(22px,2.4vw,32px) var(--disp)}
+html[lang="ar"] .sc-tx b{line-height:1.4}
+.sc-tx small{font-size:15px;color:var(--ink-2)}
+.card .im.phone{position:relative;aspect-ratio:16/11}
+.cards>.card:only-child{grid-column:1/-1}
+@media (min-width:761px){.cards>.card:only-child .im.phone{aspect-ratio:21/9}}
+@media (max-width:560px){.stage.phone img{height:min(60vh,520px);border-width:7px;border-radius:26px}}
+.card .im.phone .pf{position:absolute;top:9%;height:96%;aspect-ratio:600/1298;background:#151513;border-radius:30px;padding:8px;box-shadow:0 26px 40px -20px rgba(30,20,60,.55);left:50%;transform:translateX(-78%) rotate(-4deg);z-index:2;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card .im.phone .pf2{transform:translateX(-8%) rotate(5deg);top:14%;z-index:1}
+.card .im.phone .pf img{width:100%;height:100%;object-fit:cover;border-radius:22px;transform:none!important}
+.card:hover .im.phone .pf{transform:translateX(-84%) rotate(-7deg)}
+.card:hover .im.phone .pf2{transform:translateX(-2%) rotate(8deg)}
+.stage.phone img{height:min(72vh,680px);width:auto;max-width:100%;aspect-ratio:600/1298;object-fit:cover;border-radius:34px;border:10px solid #151513;box-shadow:0 30px 50px -24px rgba(30,20,60,.6)}
+.card .tx{padding:18px 20px 22px;display:grid;gap:6px}
+.card .mt{font-size:13px;color:var(--ink-2);font-weight:500}
+.card h3{font-size:clamp(22px,2.2vw,28px);letter-spacing:-.02em}
+html[lang="ar"] .card h3{letter-spacing:0;line-height:1.4}
+.card p{color:var(--ink-2);font-size:15px}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+/* case study */
+.cshead{padding-block:clamp(18px,3vw,36px) 22px}
+.cshead .mt{font-size:14px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:8px}
+.cshead .mt span{padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.cshead h2{font-size:clamp(40px,7vw,104px);letter-spacing:-.05em;margin-top:14px}
+html[lang="ar"] .cshead h2{letter-spacing:0;line-height:1.25}
+.cshead .sub{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);margin-top:10px;max-width:60ch}
+.stage{position:relative;border-radius:var(--r);background:var(--c);overflow:hidden;display:grid;place-items:center;padding:clamp(14px,3vw,40px)}
+.stage img{max-width:100%;max-height:72vh;border-radius:10px;box-shadow:0 24px 40px -24px rgba(0,0,0,.5)}
+.stage.deck{background:#16161A;padding:clamp(10px,2vw,28px)}
+.stage.deck img{border-radius:6px;width:100%;max-width:calc(70vh*16/9);max-height:none;aspect-ratio:16/9;object-fit:contain;background:#000}
+.stage .nv{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 20px -10px rgba(0,0,0,.5)}
+.stage .nv svg{width:18px;height:18px}
+.stage .pv{left:14px}.stage .nx{right:14px}
+.stage .nv svg{transform:none!important}
+.stage .ct{position:absolute;inset-inline-end:16px;top:14px;background:#fff;color:var(--ink);font:600 13px var(--body);padding:4px 11px;border-radius:999px;font-variant-numeric:tabular-nums;direction:ltr;pointer-events:none}
+.prog{direction:ltr;position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.18)}
+.prog i{display:block;height:100%;background:var(--hot);width:0;transition:width .35s}
+.thumbs{direction:ltr;display:flex;gap:8px;overflow-x:auto;padding-block:12px 4px;scrollbar-width:thin}
+.thumbs button{all:unset;cursor:pointer;flex:0 0 auto;height:64px;aspect-ratio:var(--ta,1);border-radius:10px;overflow:hidden;opacity:.5;outline:2px solid transparent;outline-offset:1px;transition:opacity .2s}
+.thumbs button[aria-current="true"]{opacity:1;outline-color:var(--ink)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.story{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(24px,5vw,72px);margin-top:clamp(30px,4vw,56px)}
+.facts{display:grid;gap:18px;align-content:start}
+.facts div{display:grid;gap:6px}
+.facts h4{font:600 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+html[lang="ar"] .facts h4{letter-spacing:0;font-size:14px}
+.facts .tags{display:flex;flex-wrap:wrap;gap:6px}
+.facts .tags span{font-size:14px;padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.blocks{display:grid;gap:26px}
+.blocks h3{font-size:clamp(22px,2.2vw,28px);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.blocks h3 i{width:10px;height:10px;border-radius:3px;background:var(--hot);transform:rotate(45deg)}
+.blocks p{color:#3D3B36;max-width:70ch}
+@media (max-width:860px){.story{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home"><span data-i="brand">Saeed Alsuhaimi</span><span class="dot" aria-hidden="true"></span></a>
+    <div class="topR">
+      <span class="avail"><i></i><span data-i="avail">Available for freelance</span></span>
+      <button class="chipbtn" type="button" id="lang">عربي</button>
+      <a class="chipbtn" href="#contact" data-i="talk">Let's talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero wrap" aria-label="Intro and sections">
+    <div class="bento" id="bento"></div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div class="row" id="marq"></div></div>
+
+  <section class="sec wrap" id="about">
+    <div class="about">
+      <p class="statement rv" data-i="state">I'm a <mark style="--c:var(--butter)">visual artist</mark> and <mark style="--c:var(--lilac)">digital designer</mark> who moves between screens, slides and <mark style="--c:var(--blush)">fabric</mark>.</p>
+      <div class="rv">
+        <div class="ab-body" data-i="abody"><p>I'm based in Makkah, with a Bachelor's in Visual Arts from Umm Al-Qura University and a Master's in progress in the same field.</p><p>I design presentations and interactive decks, interfaces and social media posts, and I keep a hand-made practice in punch needle embroidery and textile painting. Each side feeds the other: art gives the design its feeling, and design gives the art its clarity.</p></div>
+        <div class="edu" id="edu"></div>
+      </div>
+    </div>
+    <ol class="steps" id="steps"></ol>
+    <div class="ailine rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" fill="currentColor"/></svg><p data-i="ai"><b>AI in my workflow.</b> I use AI tools for research, early ideas and exploring visual directions. The concept, the visual decisions and the final polish are mine, and on hand-made work the craft is fully by hand.</p></div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="contact">
+      <span class="blob"></span>
+      <div class="cgrid">
+        <div class="cleft">
+          <span class="note" data-i="cNote">got a project in mind?</span>
+          <h2 data-i="cH">Let's make it <span>together.</span></h2>
+          <p class="clead" data-i="cLead">Tell me what you need and leave your email. Your message comes straight to my inbox and I'll get back to you.</p>
+        </div>
+        <form class="cform" id="cform" novalidate>
+          <div id="fBody">
+            <fieldset class="kinds"><legend data-i="fKind">What do you need?</legend><div id="kinds"></div></fieldset>
+            <label class="fl"><span data-i="fName">Your name</span><input name="name" id="fName" autocomplete="name"></label>
+            <label class="fl"><span data-i="fMail">Your email *</span><input name="email" id="fMail" type="email" required autocomplete="email" dir="ltr"></label>
+            <label class="fl"><span data-i="fMsg">Tell me about the project *</span><textarea name="message" id="fMsg" rows="4" required></textarea></label>
+            <p class="ferr" id="fErr" role="alert"></p>
+            <button class="btn dark send" type="submit" id="fSend"><span data-i="fSend">Send message</span><svg viewBox="0 0 16 16" class="flip" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+          <div class="fdone" id="fDone" hidden><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 data-i="fDoneH">Message sent!</h3><p data-i="fDoneP">Thank you. I've received your request and will contact you by email soon.</p></div>
+        </form>
+        <div class="cinfo">
+          <div class="mailrow"><span data-i="orMail">Or email me directly:</span> <a class="mail" href="mailto:saeed2002s21@gmail.com" id="mail">saeed2002s21@gmail.com</a><button class="btn sm" type="button" id="copy"><span data-i="copy">Copy email</span></button></div>
+          <div class="clinks"><span data-i="loc">Makkah, Saudi Arabia</span><span data-i="langs">Arabic · English</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="wrap"><span>© 2026 Saeed Alsuhaimi · سعيد السهيمي</span><span data-i="foot">Every piece shown here is my own work.</span></footer>
+</main>
+
+<nav class="dock" id="dock" aria-label="Quick navigation"></nav>
+
+<div class="ov" id="sv" hidden role="dialog" aria-modal="true" aria-labelledby="svT">
+  <div class="ovbar"><div class="wrap"><div class="crumb"><span data-i="sections">Sections</span><span>/</span><b id="svCrumb"></b></div><button class="chipbtn" type="button" id="svClose" data-i="close">Close</button></div></div>
+  <div class="wrap"><div class="svhead" id="svHead"></div><div class="cards" id="svCards"></div></div>
+</div>
+<div class="ov" id="cs" hidden role="dialog" aria-modal="true" aria-labelledby="csT">
+  <div class="ovbar"><div class="wrap"><div class="crumb"><span id="csCat"></span><span>/</span><b id="csCrumb"></b></div><button class="chipbtn" type="button" id="csClose" data-i="close">Close</button></div></div>
+  <div class="wrap">
+    <div class="cshead"><div class="mt" id="csMeta"></div><h2 id="csT"></h2><p class="sub" id="csSub"></p></div>
+    <div class="stage" id="stage"><img id="csImg" alt=""><video id="csVid" muted loop playsinline autoplay hidden></video><button class="nv pv" type="button" id="pv" aria-label="Previous"></button><button class="nv nx" type="button" id="nx" aria-label="Next"></button><span class="ct" id="ct"></span><span class="prog"><i id="prog"></i></span></div>
+    <div class="thumbs" id="thumbs"></div>
+    <div class="story"><div class="facts" id="facts"></div><div class="blocks" id="blocks"></div></div>
+  </div>
+</div>
+
+<script>
+const r=(p,a,b,pad=2)=>Array.from({length:b-a+1},(_,i)=>`img/${p}${String(a+i).padStart(pad,"0")}.jpg`);
+const CAT={ui:"UI/UX Design",pres:"Presentation Design",graphic:"Graphic Design",art:"Art & Creative Practice"};
+const P=[
+ {id:"pe",cat:"ui",title:"Practice English",sub:"AI English-learning app",year:"2026",link:"https://saeed-practice-english.netlify.app/",video:"vid/pe.mp4",teaser:"vid/pe-intro.mp4",
+  imgs:["vid/pe.mp4","img/pe-splash-v3.webp","img/pe-onb1.webp","img/pe-onb2.webp","img/pe-onb3.webp","img/pe-login.webp","img/pe-info.webp","img/pe-home.webp","img/pe-weekly.webp","img/pe-read.webp","img/pe-read_pop.webp","img/pe-done.webp","img/pe-listen.webp","img/pe-saved.webp","img/pe-settings.webp"],
+  overview:"An AI app that takes bits of your daily life (your home, your family, your routine) and turns them into short lessons you can read, listen to and speak about.",
+  challenge:"Beginners learn from generic textbook topics, so new words never connect to their own day. Most apps also split reading, listening and speaking into separate tools, and motivation fades fast.",
+  approach:"I started from a persona, an A2 beginner with ten minutes a day, then moved through a moodboard, wireframes, hi-fi screens and a prototype in Figma. One short story is practised across all four skills, with tap-to-translate words, a live narrated transcript, and XP and streaks on a single home screen. Warm yellow and white, and one soft wave shape repeated on every card and button, keep it calm and friendly.",
+  outcome:"A complete mobile UI, from splash and onboarding to reading, listening, saved lessons and settings, plus a full case study online. A simple demo of the app is also live, though it is not fully working yet.",
+  tools:["Figma","Prototyping","AI-assisted research"],
+  role:"UI/UX design: persona, wireframes, visual design and prototype.",type:"Personal project"},
+ {id:"emb",cat:"ui",title:"Hand Embroidery Store",sub:"E-commerce app UI",year:"2026",teaser:"vid/emb-anim.mp4",
+  imgs:["vid/emb-anim.mp4","img/emb-splash.webp","img/emb-onb1.webp","img/emb-onb2.webp","img/emb-onb3.webp","img/emb-login.webp","img/emb-home.webp","img/emb-detail.webp","img/emb-checkout.webp"],
+  overview:"A mobile store for hand-embroidered pieces, where each piece is presented like a small artwork with its own story.",
+  challenge:"Handmade embroidery is usually sold through scattered social media posts, so buyers cannot browse pieces easily, see the details, or order in a few clear steps.",
+  approach:"I worked through a moodboard, a persona, wireframes, hi-fi screens and a prototype in Figma. Warm browns and a single yellow accent echo the threads, close-up embroidery photos lead each screen, and the flow runs from onboarding to the home page, a product story, the cart and checkout.",
+  outcome:"A complete e-commerce app UI with a clickable prototype and a full case study, built around my own embroidery work.",
+  tools:["Figma","Prototyping","Wireframing"],
+  role:"UI design: moodboard, persona, wireframes, hi-fi screens and prototype.",type:"Personal project"},
+ {id:"asf",cat:"ui",title:"Asfar",sub:"Travel app UI",year:"2026",teaser:"vid/asf-anim.mp4",
+  imgs:["vid/asf-anim.mp4","img/asf-splash.webp","img/asf-onb1.webp","img/asf-onb2.webp","img/asf-onb3.webp","img/asf-login.webp","img/asf-home.webp","img/asf-detail.webp"],
+  overview:"A travel app that helps people discover destinations in Saudi Arabia and beyond, compare places and book a trip in a few steps.",
+  challenge:"Travellers struggle to find an app that makes exploring places and booking feel simple, with clear, trustworthy information about each destination.",
+  approach:"I built a persona, a moodboard, wireframes, hi-fi screens and a prototype in Figma. A calm white and teal palette with Poppins keeps it fresh and clean, big destination photos lead each screen, and booking is split into three short steps: date and time, details, and payment.",
+  outcome:"A complete travel app UI, from onboarding and sign-in to the home page, place details and booking, with a clickable prototype and a full case study.",
+  tools:["Figma","Prototyping","Wireframing"],
+  role:"UI design: persona, moodboard, wireframes, hi-fi screens and prototype.",type:"Personal project"},
+ {id:"pep",cat:"ui",wip:true,title:"pep",sub:"Workout tracker app",year:"2026",
+  imgs:["img/pep-home.webp","img/pep-workouts.webp","img/pep-session.webp","img/pep-weight.webp","img/pep-stats.webp","img/pep-history.webp"],
+  overview:"A playful workout tracker for home calisthenics, gym days and cardio, with a weekly goal, weight tracking and progress you can see.",
+  challenge:"Logging a workout usually feels like filling a spreadsheet, so people stop after a week. The app had to make every set quick to log and every bit of progress visible.",
+  approach:"Bold, friendly neo-brutal cards with thick outlines, hard shadows and bright orange, sun yellow, lilac and mint. Big plus and minus buttons for rounds and sets, 'last time' and 'best' shown on every exercise, a weekly goal card, a weight trend with a 7-day average, and a history log.",
+  outcome:"A working app with home, workouts, session logging, weight, stats and history screens. It is still in development.",
+  tools:["Figma","UI design","Prototype"],
+  role:"UI/UX design and build.",type:"Personal project"},
+ {id:"sohmenu",cat:"ui",tablet:true,title:"Soh Interactive Menu",sub:"iPad ordering kiosk",year:"2026",link:"https://soh-ksa.vercel.app/",
+  imgs:["img/soh-board.webp","img/soh-burger.webp","img/soh-sands.webp","img/soh-fries.webp","img/soh-drinks.webp","img/soh-wheel.webp","img/soh-order-full.webp","img/soh-saver.webp"],
+  overview:"An interactive iPad menu for Soh, a burger restaurant, where customers browse, build their order and hand a ready bill to the cashier.",
+  challenge:"Make ordering fast and fun while every screen still feels like Soh's brand, and keep it working even without internet.",
+  approach:"A board of six category stickers leads to pages like burgers pinned on a string, fries, sauces and a drinks fridge. An 'undecided?' wheel suggests a meal, the bill builds as you order, and the brand's colours, hand-drawn type and mascot run through every screen. It runs offline as a PWA.",
+  outcome:"A working kiosk menu, live online, with a matching set of Instagram posts and a short reel.",
+  tools:["UI design","Interactive prototype","PWA"],
+  role:"UI/UX design and build of the menu, using the restaurant's existing logo and identity.",type:"Client-style project"},
+ {id:"king",cat:"art",title:"King Salman Portrait",sub:"Hand embroidery",year:"2026",
+  imgs:["img/art-king.webp"],
+  overview:"A hand-embroidered portrait of King Salman, set in a round black frame.",
+  challenge:"Capture a well-known face with only a few bold lines, so it reads clearly from a distance without losing the likeness.",
+  approach:"I reduced the portrait to a clean black outline on white fabric and kept colour for one detail only: the gold trim of the bisht, worked as a woven pattern.",
+  outcome:"A simple, striking portrait where the thread lines carry the likeness and the gold gives it a sense of occasion.",
+  tools:["Hand embroidery","Line drawing"],role:"Design and embroidery, fully by hand.",type:"Artwork"},
+ {id:"eye",cat:"art",title:"The Eye",sub:"Hand embroidery",year:"2026",
+  imgs:["img/art-eye.webp"],
+  overview:"A close-up of an eye embroidered by hand in a small wooden hoop.",
+  challenge:"Build skin tones, light and depth with thread alone, at a very small scale.",
+  approach:"I broke the face into flat blocks of warm browns and creams, then let the green iris and the pink of the lower lid carry the detail.",
+  outcome:"A small, intense piece where colour blocks read as a realistic eye.",
+  tools:["Hand embroidery","Colour study"],role:"Design and embroidery, fully by hand.",type:"Artwork"},
+ {id:"cafe",cat:"art",title:"Coffee Pieces",sub:"Hand embroidery for a café",year:"2026",
+  imgs:["img/art-pour.webp","img/art-hands.webp"],
+  overview:"Two embroidered hoops made around coffee: hands wrapped around a warm cup, and a barista pouring a filter coffee.",
+  challenge:"Make two pieces that feel like one set and fit the calm mood of a coffee space.",
+  approach:"I kept both to black thread on cream fabric with olive hoops: a fine, sketch-like line for the hands, and a thick, bold line for the barista.",
+  outcome:"A matching pair of wall pieces with a warm, everyday coffee feeling.",
+  tools:["Hand embroidery","Illustration"],role:"Design and embroidery, fully by hand.",type:"Artwork"},
+ {id:"eng",cat:"art",title:"Engineer Portrait",sub:"Hand embroidery · Portrait",year:"2026",
+  imgs:["img/art-eng.webp","img/art-eng-detail.jpg"],
+  overview:"A personal portrait of an engineer in his hard hat, embroidered by hand.",
+  challenge:"Show a real person's likeness and shading using only black, white and greys.",
+  approach:"I mapped the face into a few grey values and filled each area with dense loops, keeping the helmet as a light outline so the face stays the focus.",
+  outcome:"A recognisable, textured portrait in a round black frame, made as a gift.",
+  tools:["Hand embroidery","Portrait"],role:"Design and embroidery, fully by hand.",type:"Artwork"},
+ {id:"hoop",cat:"art",lg:true,title:"Unspoken",sub:"Punch needle artwork",year:"2026",
+  imgs:["img/hoop.webp","img/u-hoop-01-hoop-front.jpg","img/u-hoop-02-vase-detail.jpg","img/u-hoop-03-texture-detail.jpg","img/u-hoop-04-angle-detail.jpg"],
+  overview:"Unspoken is a personal, hand-embroidered artwork inspired by the emotions and thoughts that stay beyond words.",
+  challenge:"How can material and texture carry a feeling that is hard to say out loud, without relying on text?",
+  approach:"An abstract composition leaves the meaning open, so each viewer forms their own reading. I worked with punch needle loops to build a rich, raised surface and chose a warm, balanced palette of burnt orange on natural fabric, with a fine black line drawing the vase form.",
+  outcome:"A handmade piece in a wooden hoop, made in about 15 hours. It is now offered as an original artwork in my shop, Saeedarty.",
+  tools:["Punch Needle","Embroidery","Fabric & threads","Wooden embroidery hoop"],
+  role:"Concept, composition, colour, and full hand execution.",type:"Personal art project"},
+ {id:"coffeeposts",cat:"graphic",title:"Specialty Coffee Posts",sub:"Social media designs · Arabic",year:"2026",
+  imgs:["img/coffee-dallah.webp","img/coffee-iced-latte.webp","img/coffee-v60.webp","img/coffee-cold-brew.webp"],
+  overview:"A set of four Instagram posts for specialty coffee drinks, from Arabic coffee to cold brew.",
+  challenge:"Make every drink feel tempting and distinct while the four posts still read as one feed.",
+  approach:"Each post gets its own colour world (sand for Arabic coffee, sage for iced latte, terracotta for V60, butter yellow for cold brew), a hero photo caught mid-pour, a bold Arabic headline and a short line of brewing details.",
+  outcome:"A consistent post series ready for a café feed, which I also use as samples for my social media design service.",
+  tools:["Graphic design","Arabic typography","Social media"],
+  role:"Concept, layout, typography and final design.",type:"Sample project"},
+ {id:"suposts",cat:"graphic",title:"SOH Social Posts",sub:"Instagram campaign · burger restaurant",year:"2026",
+  imgs:["img/su-01-truffle-burger.webp","img/su-04-beef-vs-chicken.webp","img/su-05-crunch.webp","img/su-06-sauces.webp","img/su-07-fridge.webp","img/su-02-wheel-soh-burger.webp","img/su-03-screen-to-hand.webp"],
+  overview:"Seven Instagram posts for SOH, a burger restaurant in Makkah, built around its interactive touch-screen menu.",
+  challenge:"Promote a new way of ordering, an in-store touch screen, while staying inside the restaurant's bold red identity.",
+  approach:"Each post takes one moment from the menu (the truffle burger, beef vs chicken, sauces, the drinks fridge and the 'can't decide' wheel) and pairs real food photos with SOH's red, cream and charcoal palette and playful Arabic headlines.",
+  outcome:"A ready-to-post campaign that ties the restaurant's feed to the in-store menu experience.",
+  tools:["Graphic design","Social media","Arabic typography"],
+  role:"Post concepts, layout and design. The SOH logo and brand identity belong to the restaurant.",type:"Concept project"},
+ {id:"digital",cat:"graphic",lg:true,title:"Unspoken Designs & Pattern",sub:"Printable collection",year:"2026",
+  imgs:["img/g-pillow.jpg","img/g-tote.jpg","img/g-tee.jpg","img/g-frame.jpg","img/u-digital-01-digital-download.jpg","img/u-digital-04-embroidery-pattern-result.jpg"],
+  overview:"A digital collection of four printable designs and one embroidery pattern, developed from the Unspoken artwork.",
+  challenge:"Translate a textured, handmade piece into flat graphics that still feel minimal and meaningful, and that work across different products.",
+  approach:"I redrew the forms as clean graphic shapes, built four variations, and prepared an embroidery pattern so others can recreate the piece. I then presented the designs on a cap, pillow, sweatshirt, tote bag, and framed print to show how the system adapts.",
+  outcome:"A ready-to-download PDF pack sold in my shop, plus a consistent set of product mockups that show the designs in use.",
+  tools:["Graphic design","Pattern design","Product mockups","Print-ready PDF"],
+  role:"Design of all graphics, the pattern, and the product presentation.",type:"Personal product"},
+ {id:"qafila",cat:"pres",title:"Qafilat Al-Tayeb",sub:"Interactive presentation · Interactive stories · Arabic",year:"2026",
+  imgs:["img/qaf-1.jpg","img/qaf-2.jpg","img/qaf-3.jpg","img/qaf-4.jpg","img/qaf-5.jpg"],
+  overview:"An illustrated, interactive presentation that tells the story of the ancient incense route and the caravans that crossed the Arabian Peninsula.",
+  challenge:"Turn a history lesson about the incense trade into something people want to follow to the end, instead of a list of dates and place names.",
+  approach:"I built the deck as a journey across one continuous desert scene: warm sand tones, a sun and dunes that carry through every slide, camels, and hand-drawn props. Each chapter is a stop on the route: the story of the incense road, the stations of the journey on a dotted map from Dhofar to Gaza, and the caravan's cargo of frankincense, myrrh and spices.",
+  outcome:"A cohesive, story-driven Arabic presentation where the visuals guide the audience through the route chapter by chapter.",
+  tools:["PowerPoint","Illustration","Storytelling"],
+  role:"Concept, illustration style, layout and presentation design.",type:"Presentation"},
+ {id:"mnt",cat:"pres",lg:true,title:"The World's Greatest Mountains",sub:"Educational presentation",year:"2026",
+  imgs:r("mnt-",1,9,1),
+  overview:"A 9-slide educational presentation in English about the world's highest mountains and how they form.",
+  challenge:"Make geography content feel cinematic and memorable, while keeping facts like heights and rock types easy to follow.",
+  approach:"I set a dark, atmospheric visual language with dramatic mountain imagery, then structured each slide around one idea: an elevation chart for the highest peaks, labelled rock layers, plate tectonics as a simple diagram, and a world map of major ranges.",
+  outcome:"A deck that moves from a striking K2 opener to clear explanations, mixing storytelling with information design.",
+  tools:["Microsoft PowerPoint","Data visualisation","Visual storytelling"],
+  role:"Content structure, visual direction, and full slide design.",type:"Portfolio project"},
+ {id:"pp",cat:"pres",title:"Past Participle",sub:"Interactive English lesson",year:"2026",
+  imgs:r("pp-",1,27),
+  overview:"A 27-slide interactive grammar lesson that teaches the past participle and ends in a short quiz.",
+  challenge:"Keep learners engaged with a dry grammar topic and let them check their understanding inside the presentation.",
+  approach:"I used colour-coded verb forms, simple card layouts, and timelines to explain each rule, then built a multiple-choice quiz with instant correct and try-again feedback and a Next button.",
+  outcome:"A self-paced lesson that teaches, then tests, all within PowerPoint.",
+  tools:["Microsoft PowerPoint","Interactive slides","Information hierarchy"],
+  role:"Lesson structure, interaction design, and slide design.",type:"Portfolio project"},];
+const AREAS=[
+ {k:"ui",h:"UI/UX Design",p:"Designing intuitive and visually engaging digital experiences with a focus on usability, structure, and user needs.",l:["User Interface Design","User Experience Design","Wireframing and Prototyping","Visual Hierarchy and Layout","Design Systems and Components"]},
+ {k:"pres",h:"Presentation Design",p:"Turning complex ideas into clear, compelling, and visually structured presentations.",l:["Business Presentations","Pitch Decks","Academic Presentations","Data Visualization","Visual Storytelling","Interactive PowerPoint"]},
+ {k:"graphic",h:"Graphic Design",p:"Visual communication that combines strong composition, purposeful typography, and a consistent identity.",l:["Social Media Design","Printable Designs","Product Mockups","Infographics","Typography and Composition"]},
+ {k:"art",h:"Art & Creative Practice",p:"Visual expression through contemporary art, handmade processes, and material experimentation.",l:["Contemporary Art","Embroidery and Punch Needle","Textile Painting","Concept Development","Material and Texture Studies"]}
+];
+const SK=[
+ ["Design & Prototyping",["Figma","Adobe Illustrator","Adobe Photoshop"],[]],
+ ["Presentation Design",["Microsoft PowerPoint"],["Visual Storytelling","Information Hierarchy","Slide Layout"]],
+ ["Video & Content",["CapCut"],["Digital Content Design","Visual Content Editing"]],
+ ["3D & Visual Exploration",["Blender"],["Basic 3D Modeling"]],
+ ["AI-Assisted Workflow",["ChatGPT","Claude"],["AI-Assisted Research","Idea Development","Visual Exploration"]],
+ ["Creative Skills",[],["Concept Development","Visual Communication","Composition","Typography","Color Theory","Creative Problem-Solving"]]
+];
+
+
+const AR_P={
+ pe:{title:"Practice English",sub:"تطبيق لتعلّم الإنجليزية بالذكاء الاصطناعي",overview:"تطبيق بالذكاء الاصطناعي يأخذ أشياء من يومياتك (بيتك، أهلك، روتينك) ويحوّلها إلى دروس قصيرة تقرؤها وتسمعها وتتحدث عنها.",
+  challenge:"المبتدئ يتعلّم من مواضيع عامة في الكتب، فلا ترتبط الكلمات الجديدة بيومه. وأغلب التطبيقات تفصل القراءة عن الاستماع والمحادثة، فيخفت الحماس بسرعة.",
+  approach:"بدأت من شخصية مستخدم: مبتدئ بمستوى A2 لديه عشر دقائق يوميًا، ثم مررت بلوحة الإلهام والإطارات السلكية والتصميم النهائي والنموذج التفاعلي في فيقما. قصة قصيرة واحدة يتدرّب عليها بالمهارات الأربع، مع ترجمة الكلمة بلمسة، ونص صوتي مباشر، ونقاط وسلسلة أيام في شاشة رئيسية واحدة. الأصفر الدافئ والأبيض، وموجة ناعمة واحدة تتكرر في كل بطاقة وزر، تجعل الواجهة هادئة وودودة.",
+  outcome:"واجهة جوال كاملة من شاشة البداية والتعريف إلى القراءة والاستماع والدروس المحفوظة والإعدادات، مع دراسة حالة كاملة على الإنترنت. وتوجد نسخة تجريبية بسيطة من التطبيق، لكنها لا تعمل بالكامل بعد.",
+  tools:["Figma","النماذج التفاعلية","البحث بمساعدة الذكاء الاصطناعي"],role:"تصميم UI/UX: شخصية المستخدم والإطارات السلكية والتصميم البصري والنموذج التفاعلي.",type:"مشروع شخصي"},
+ pep:{title:"pep",sub:"تطبيق لتتبّع التمارين",overview:"تطبيق مرح لتتبّع التمارين في البيت والنادي والكارديو، مع هدف أسبوعي وتتبّع للوزن وتقدّم تشوفه بعينك.",
+  challenge:"تسجيل التمرين عادة يشبه تعبئة جدول، فيترك الناس التطبيق بعد أسبوع. فكان لازم يكون تسجيل كل مجموعة سريعًا، وكل تقدّم واضحًا.",
+  approach:"بطاقات جريئة وودودة بحدود سميكة وظلال حادة وألوان برتقالي وأصفر وليلكي ونعناعي. أزرار زائد وناقص كبيرة للجولات والمجموعات، و«آخر مرة» و«أفضل رقم» تحت كل تمرين، وبطاقة للهدف الأسبوعي، ومنحنى للوزن مع متوسط سبعة أيام، وسجل للتمارين.",
+  outcome:"تطبيق يعمل بشاشات الرئيسية والتمارين وتسجيل الجلسة والوزن والإحصائيات والسجل. وهو قيد التطوير.",
+  tools:["Figma","تصميم الواجهات","نموذج تفاعلي"],role:"تصميم وتنفيذ الواجهات.",type:"مشروع شخصي"},
+ sohmenu:{title:"منيو سو التفاعلي",sub:"منيو طلبات على الآيباد",overview:"منيو تفاعلي على الآيباد لمطعم سو للبرجر، يتصفح فيه العميل الأصناف ويبني طلبه ويعطي الفاتورة جاهزة للكاشير.",
+  challenge:"أن يكون الطلب سريعًا وممتعًا، وأن تبقى كل شاشة بروح هوية سو، وأن يعمل حتى بدون إنترنت.",
+  approach:"لوحة بستة ملصقات للأقسام تقود لصفحات مثل البرجر المعلّق على خيط، والبطاطس، والصوصات، وثلاجة المشروبات. عجلة «محتار وش تاكل؟» تقترح وجبة، والفاتورة تتكوّن مع الطلب، وألوان الهوية وخطوطها المرسومة والشخصية تظهر في كل شاشة. ويعمل بدون إنترنت كتطبيق ويب.",
+  outcome:"منيو طلبات يعمل ومنشور على الإنترنت، مع مجموعة بوستات إنستقرام وريل قصير متناسقة معه.",
+  tools:["تصميم الواجهات","نموذج تفاعلي","تطبيق ويب"],role:"تصميم وتنفيذ المنيو، مع استخدام شعار المطعم وهويته الحالية.",type:"مشروع لمطعم"},
+ emb:{title:"متجر التطريز اليدوي",sub:"واجهة تطبيق متجر إلكتروني",overview:"متجر على الجوال لقطع التطريز اليدوي، تُعرض فيه كل قطعة كعمل فني صغير له قصته.",
+  challenge:"التطريز اليدوي يُباع غالبًا عبر منشورات متفرقة في السوشال ميديا، فلا يستطيع المشتري تصفّح القطع بسهولة أو رؤية تفاصيلها أو الطلب بخطوات واضحة.",
+  approach:"مررت بلوحة الإلهام وشخصية المستخدم والإطارات السلكية والتصميم النهائي والنموذج التفاعلي في فيقما. الألوان البنية الدافئة مع لون أصفر واحد تذكّر بالخيوط، وصور التطريز القريبة تتصدّر كل شاشة، والرحلة تمتد من التعريف إلى الرئيسية وقصة القطعة والسلة والدفع.",
+  outcome:"واجهة تطبيق متجر كاملة مع نموذج تفاعلي ودراسة حالة كاملة، مبنية على أعمالي في التطريز.",
+  tools:["Figma","النماذج التفاعلية","الإطارات السلكية"],role:"تصميم الواجهات: لوحة الإلهام وشخصية المستخدم والإطارات السلكية والتصميم النهائي والنموذج التفاعلي.",type:"مشروع شخصي"},
+ asf:{title:"أسفار",sub:"واجهة تطبيق سفر",overview:"تطبيق سفر يساعدك تكتشف الوجهات في السعودية وخارجها، وتقارن بين الأماكن، وتحجز رحلتك بخطوات قليلة.",
+  challenge:"المسافر يصعب عليه أن يجد تطبيقًا يجعل استكشاف الأماكن والحجز سهلًا، مع معلومات واضحة وموثوقة عن كل وجهة.",
+  approach:"بنيت شخصية المستخدم ولوحة الإلهام والإطارات السلكية والتصميم النهائي والنموذج التفاعلي في فيقما. الأبيض مع الأخضر المائل للفيروزي وخط Poppins يعطيان إحساسًا منعشًا ونظيفًا، وصور الوجهات الكبيرة تتصدّر كل شاشة، والحجز مقسّم إلى ثلاث خطوات قصيرة: التاريخ والوقت، ثم البيانات، ثم الدفع.",
+  outcome:"واجهة تطبيق سفر كاملة من التعريف وتسجيل الدخول إلى الرئيسية وتفاصيل المكان والحجز، مع نموذج تفاعلي ودراسة حالة كاملة.",
+  tools:["Figma","النماذج التفاعلية","الإطارات السلكية"],role:"تصميم الواجهات: شخصية المستخدم ولوحة الإلهام والإطارات السلكية والتصميم النهائي والنموذج التفاعلي.",type:"مشروع شخصي"},
+ coffeeposts:{title:"بوستات القهوة المختصة",sub:"تصاميم سوشال ميديا · بالعربية",overview:"مجموعة من أربعة بوستات إنستقرام لمشروبات القهوة المختصة، من القهوة العربية إلى الكولد برو.",
+  challenge:"أن يبدو كل مشروب مغريًا ومميزًا، وأن تبقى البوستات الأربعة متناسقة كحساب واحد.",
+  approach:"لكل بوست عالمه اللوني: الرملي للقهوة العربية، والمريمي للآيس لاتيه، والطوبي للـV60، والأصفر الزبدي للكولد برو. مع صورة رئيسية في لحظة الصب، وعنوان عربي عريض، وسطر قصير بتفاصيل التحضير.",
+  outcome:"سلسلة بوستات متناسقة جاهزة لحساب مقهى، وأستخدمها كنماذج لخدمة تصميم السوشال ميديا.",
+  tools:["تصميم جرافيك","الطباعة العربية","سوشال ميديا"],role:"الفكرة والتخطيط والطباعة والتصميم النهائي.",type:"مشروع نموذجي"},
+ suposts:{title:"بوستات سو",sub:"حملة إنستقرام · مطعم برجر",overview:"سبعة بوستات إنستقرام لمطعم سو للبرجر في مكة، مبنية حول المنيو التفاعلي بشاشة اللمس.",
+  challenge:"الترويج لطريقة طلب جديدة داخل المطعم، وهي شاشة اللمس، مع الالتزام بهوية المطعم الحمراء الجريئة.",
+  approach:"كل بوست يأخذ لحظة من المنيو: برجر الترفل، ولحم ضد دجاج، والصوصات، وثلاجة المشروبات، وعجلة «محتار؟». وتجمع البوستات صور الأكل الحقيقية مع ألوان سو الأحمر والكريمي والفحمي وعناوين عربية مرحة.",
+  outcome:"حملة جاهزة للنشر تربط حساب المطعم بتجربة المنيو داخل المحل.",
+  tools:["تصميم جرافيك","سوشال ميديا","الطباعة العربية"],role:"أفكار البوستات والتخطيط والتصميم. شعار سو وهويته البصرية ملك للمطعم.",type:"مشروع مفاهيمي"},
+ king:{title:"لوحة الملك سلمان",sub:"تطريز يدوي",overview:"بورتريه للملك سلمان مطرّز باليد داخل إطار دائري أسود.",
+  challenge:"التقاط ملامح وجه معروف بخطوط قليلة وواضحة تُقرأ من بعيد دون أن يضيع الشبه.",
+  approach:"اختصرت البورتريه إلى خط أسود نظيف على قماش أبيض، وتركت اللون لتفصيلة واحدة فقط: الذهبي في حاشية البشت بنقشة متقاطعة.",
+  outcome:"بورتريه بسيط ولافت، الخيط يحمل الشبه والذهبي يعطيه هيبة المناسبة.",
+  tools:["تطريز يدوي","رسم خطي"],role:"التصميم والتطريز باليد بالكامل.",type:"عمل فني"},
+ eye:{title:"العين",sub:"تطريز يدوي",overview:"لقطة قريبة لعين مطرّزة باليد داخل طارة خشبية صغيرة.",
+  challenge:"بناء درجات البشرة والضوء والعمق بالخيط فقط وبمساحة صغيرة جدًا.",
+  approach:"قسّمت الوجه إلى مساحات مسطحة من البنّي والكريمي، وتركت القزحية الخضراء والوردي أسفل الجفن تحمل التفاصيل.",
+  outcome:"قطعة صغيرة ومكثفة، مساحات اللون فيها تُقرأ كعين واقعية.",
+  tools:["تطريز يدوي","دراسة لونية"],role:"التصميم والتطريز باليد بالكامل.",type:"عمل فني"},
+ cafe:{title:"لوحتا القهوة",sub:"تطريز يدوي لمقهى",overview:"طارتان مطرّزتان عن القهوة: يدان تحتضنان كوبًا دافئًا، وباريستا يصب قهوة مقطّرة.",
+  challenge:"صنع قطعتين تُحسّان كمجموعة واحدة وتناسبان هدوء مكان القهوة.",
+  approach:"التزمت في الاثنتين بالخيط الأسود على قماش كريمي وطارات بلون زيتي: خط رفيع كالاسكتش لليدين، وخط سميك وجريء للباريستا.",
+  outcome:"زوج لوحات جدارية متناسق بإحساس قهوة يومي دافئ.",
+  tools:["تطريز يدوي","رسم توضيحي"],role:"التصميم والتطريز باليد بالكامل.",type:"عمل فني"},
+ eng:{title:"بورتريه المهندس",sub:"تطريز يدوي · بورتريه",overview:"بورتريه شخصي لمهندس بخوذته، مطرّز باليد.",
+  challenge:"إظهار ملامح شخص حقيقي وظلاله بالأسود والأبيض ودرجات الرمادي فقط.",
+  approach:"قسّمت الوجه إلى درجات رمادية قليلة وملأت كل مساحة بغرز كثيفة، وتركت الخوذة خطًا خفيفًا حتى يبقى الوجه هو المحور.",
+  outcome:"بورتريه واضح الشبه وغني بالملمس داخل إطار دائري أسود، صُنع كهدية.",
+  tools:["تطريز يدوي","بورتريه"],role:"التصميم والتطريز باليد بالكامل.",type:"عمل فني"},
+ hoop:{title:"ما لم يُقَل",sub:"عمل فني بتقنية البانش نيدل",overview:"عمل فني شخصي مطرّز يدويًا، مستوحى من المشاعر والأفكار التي تبقى أبعد من الكلمات.",
+  challenge:"كيف يمكن للخامة والملمس أن يحملا شعورًا يصعب قوله بصوت عالٍ، دون الاعتماد على النص؟",
+  approach:"تكوين تجريدي يترك المعنى مفتوحًا ليكوّن كل مشاهد قراءته الخاصة. استخدمت حلقات البانش نيدل لبناء سطح بارز وغني، واخترت لوحة ألوان دافئة ومتوازنة من البرتقالي المحروق على قماش طبيعي، مع خط أسود رفيع يرسم شكل المزهرية.",
+  outcome:"قطعة يدوية في طارة خشبية، استغرق تنفيذها نحو 15 ساعة، وهي معروضة الآن كعمل فني أصلي في متجري Saeedarty.",
+  tools:["بانش نيدل","تطريز","قماش وخيوط","طارة تطريز خشبية"],role:"الفكرة والتكوين والألوان والتنفيذ اليدوي كاملًا.",type:"مشروع فني شخصي"},
+ digital:{title:"تصاميم ونمط «ما لم يُقَل»",sub:"مجموعة قابلة للطباعة",overview:"مجموعة رقمية من أربعة تصاميم قابلة للطباعة ونمط تطريز واحد، مطوّرة من عمل «ما لم يُقَل» الفني.",
+  challenge:"تحويل قطعة يدوية غنية بالملمس إلى رسومات مسطحة تبقى بسيطة وذات معنى، وتعمل على منتجات مختلفة.",
+  approach:"أعدت رسم الأشكال كأشكال جرافيكية نظيفة، وبنيت أربع تنويعات، وجهّزت نمط تطريز يتيح للآخرين إعادة تنفيذ القطعة. ثم عرضت التصاميم على قبعة ووسادة وسويت شيرت وحقيبة ولوحة مؤطرة لأُظهر كيف يتكيّف النظام.",
+  outcome:"حزمة PDF جاهزة للتحميل تُباع في متجري، مع مجموعة متناسقة من النماذج تُظهر التصاميم أثناء الاستخدام.",
+  tools:["تصميم جرافيك","تصميم الأنماط","نماذج المنتجات (Mockups)","ملف PDF جاهز للطباعة"],role:"تصميم جميع الرسومات والنمط وطريقة عرض المنتجات.",type:"منتج شخصي"},
+ qafila:{title:"قافلة الطيب",sub:"عرض تقديمي تفاعلي · قصص تفاعلية · بالعربي",overview:"عرض تقديمي تفاعلي مرسوم يحكي قصة طريق البخور القديم والقوافل التي عبرت الجزيرة العربية.",
+  challenge:"تحويل درس تاريخي عن تجارة البخور إلى رحلة يتابعها الجمهور حتى النهاية، بدل قائمة من التواريخ وأسماء الأماكن.",
+  approach:"صممت العرض كرحلة داخل مشهد صحراوي واحد متصل: ألوان رملية دافئة، وشمس وكثبان تستمر في كل الشرائح، وجمال وعناصر مرسومة. كل فصل محطة على الطريق: حكاية طريق البخور، ثم محطات الرحلة على خريطة منقطة من ظفار إلى غزة، ثم حمولة القافلة من اللبان والمرّ والتوابل.",
+  outcome:"عرض عربي متماسك قائم على القصة، تقود فيه الصور الجمهور عبر الطريق فصلًا بعد فصل.",
+  tools:["PowerPoint","الرسم التوضيحي","السرد القصصي"],role:"الفكرة وأسلوب الرسم والتخطيط وتصميم العرض.",type:"عرض تقديمي"},
+ mnt:{title:"أعظم جبال العالم",sub:"عرض تقديمي تعليمي",overview:"عرض تقديمي تعليمي باللغة الإنجليزية من 9 شرائح عن أعلى جبال العالم وكيف تتكوّن.",
+  challenge:"أن يبدو محتوى الجغرافيا سينمائيًا وراسخًا في الذاكرة، مع إبقاء الحقائق مثل الارتفاعات وأنواع الصخور سهلة المتابعة.",
+  approach:"اعتمدت لغة بصرية داكنة بأجواء درامية وصور جبال مؤثرة، ثم بنيت كل شريحة حول فكرة واحدة: مخطط ارتفاعات لأعلى القمم، وطبقات صخرية موضّحة، والصفائح التكتونية كرسم مبسّط، وخريطة لأهم السلاسل الجبلية في العالم.",
+  outcome:"عرض ينتقل من افتتاحية لافتة عن قمة K2 إلى شروحات واضحة، ويمزج بين السرد القصصي وتصميم المعلومات.",
+  tools:["Microsoft PowerPoint","تصوير البيانات","السرد البصري"],role:"هيكلة المحتوى والتوجه البصري وتصميم الشرائح كاملة.",type:"مشروع للبورتفوليو"},
+ pp:{title:"Past Participle",sub:"درس إنجليزي تفاعلي",overview:"درس قواعد تفاعلي من 27 شريحة يشرح التصريف الثالث للفعل (Past Participle) وينتهي باختبار قصير.",
+  challenge:"إبقاء المتعلمين متفاعلين مع موضوع قواعد جاف، وتمكينهم من التحقق من فهمهم داخل العرض نفسه.",
+  approach:"استخدمت ألوانًا مميزة لصيغ الأفعال وتخطيطات بطاقات بسيطة وخطوطًا زمنية لشرح كل قاعدة، ثم بنيت اختبار اختيار من متعدد بتغذية راجعة فورية للإجابة الصحيحة وللمحاولة مجددًا، مع زر للانتقال.",
+  outcome:"درس ذاتي الإيقاع يشرح ثم يختبر، كله داخل PowerPoint.",
+  tools:["Microsoft PowerPoint","شرائح تفاعلية","التسلسل الهرمي للمعلومات"],role:"هيكلة الدرس وتصميم التفاعل وتصميم الشرائح.",type:"مشروع للبورتفوليو"},
+};
+const AR_AREAS={
+ ui:{h:"تصميم UI/UX",p:"تصميم تجارب رقمية سهلة وجذابة بصريًا، مع التركيز على قابلية الاستخدام والبنية واحتياجات المستخدم.",l:["تصميم واجهات المستخدم","تصميم تجربة المستخدم","الإطارات السلكية والنماذج الأولية","التسلسل البصري والتخطيط","أنظمة التصميم والمكونات"]},
+ pres:{h:"تصميم العروض التقديمية",p:"تحويل الأفكار المعقدة إلى عروض واضحة ومقنعة ومنظمة بصريًا.",l:["العروض التجارية","العروض الاستثمارية","العروض الأكاديمية","تصوير البيانات","السرد البصري","عروض PowerPoint التفاعلية"]},
+ graphic:{h:"التصميم الجرافيكي",p:"تواصل بصري يجمع بين التكوين القوي والطباعة المدروسة والهوية المتسقة.",l:["تصاميم السوشال ميديا","تصاميم قابلة للطباعة","نماذج المنتجات","الإنفوجرافيك","الطباعة والتكوين"]},
+ art:{h:"الفن والممارسة الإبداعية",p:"تعبير بصري من خلال الفن المعاصر والعمليات اليدوية والتجريب بالخامات.",l:["الفن المعاصر","التطريز والبانش نيدل","الرسم على القماش","تطوير الفكرة","دراسات الخامة والملمس"]}
+};
+const AR_SK=[["التصميم والنماذج الأولية",[]],["تصميم العروض التقديمية",["السرد البصري","التسلسل الهرمي للمعلومات","تخطيط الشرائح"]],["الفيديو والمحتوى",["تصميم المحتوى الرقمي","تحرير المحتوى المرئي"]],["الاستكشاف ثلاثي الأبعاد",["نمذجة ثلاثية الأبعاد أساسية"]],["سير العمل بالذكاء الاصطناعي",["البحث بمساعدة الذكاء الاصطناعي","تطوير الأفكار","الاستكشاف البصري"]],["مهارات إبداعية",["تطوير الفكرة","التواصل البصري","التكوين","الطباعة (Typography)","نظرية الألوان","حل المشكلات بإبداع"]]];
+
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ARW='<svg viewBox="0 0 16 16" class="flip" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ARL='<svg viewBox="0 0 16 16" class="flip" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON={
+ home:'<svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+ ui:'<svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+ pres:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 16v4M8 20h8M10.5 8v4l3.5-2z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>',
+ graphic:'<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="2" fill="currentColor"/><path d="M4 17l5-5 4 4 2.5-2.5L20 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+ art:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2.2"/><path d="M11 2.5h2v2h-2z" fill="currentColor"/></svg>',
+ about:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.2-3.8 4-5.5 7.5-5.5s6.3 1.7 7.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+ mail:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+};
+const COL={ui:"var(--lilac)",pres:"var(--mint)",graphic:"var(--blush)",art:"var(--butter)"};
+const ORDER=["ui","pres","graphic","art"];
+const T={
+ en:{kinds:["Presentation","UI/UX","Social media posts","Art piece","Something else"],fBad:"Please add a valid email and a short description of your project.",fFail:"Couldn't send right now. Your email app will open with the message ready instead.",fSending:"Sending…",brand:"Saeed Alsuhaimi",avail:"Available for freelance",talk:"Let's talk",kick:"Portfolio · 2026",
+  name:["Saeed","Alsuhaimi"],role:"Visual Artist & Digital Designer",roleNote:"from Makkah",
+  pitch:"I design presentations that persuade, interfaces that feel easy, and social posts that get noticed. I also embroider by hand.",
+  see:"See the work",copy:"Copy email",copied:"Email copied",sel:"Email selected, copy it from here",
+  sec:{ui:"UI/UX",pres:"Presentations",graphic:"Graphic Design",art:"Hand Embroidery"},
+  tools:"Tools I use",biT:"Bilingual design",biS:"Arabic and English, each set with its own type and direction.",talkT:"Start a project",talkB:"Tell me about your idea",
+  marq:["Presentations","Interactive decks","Pitch decks","UI/UX","Social media posts","Punch needle","Textile painting","Visual storytelling"],
+  workH:"Selected work",workP:"Grouped by discipline. Open any project for the full story: the problem, my approach, and the result.",
+  open:"Open section",projects:n=>n===1?"1 project":`${n} projects`,
+  sections:"Sections",close:"Close",
+  cs:{ov:"Overview",ch:"The challenge",ap:"My approach",oc:"The outcome",role:"My role",tools:"Tools",type:"Project type",year:"Year"},
+  full:"Open the full case study ↗",tryMenu:"Try the live menu ↗",wip:"In development",pepCs:"Open the case study ↗",slide:"Slide",img:"Image",vid:"Prototype video",
+  steps:[["Understand","Define the goal, the audience and the constraints."],["Explore","Gather references, sketch ideas and test directions."],["Develop","Build the chosen direction into slides, screens or a piece."],["Refine","Tighten every detail until it reads clearly."],["Deliver","Hand over clean, ready-to-use files."]],
+  edu:[["Master's in Visual Arts","Umm Al-Qura University","In progress"],["Bachelor's in Visual Arts","Umm Al-Qura University",""],["UI Design Bootcamp","Numkan",""]],
+  dock:{home:"Home",ui:"UI/UX",pres:"Presentations",graphic:"Graphic",art:"Embroidery",about:"About",mail:"Contact"},
+  lang:"عربي",langL:"اقرأ الموقع بالعربية"},
+ ar:{kinds:["عرض تقديمي","تصميم واجهات","بوستات سوشال ميديا","عمل فني","شي ثاني"],fBad:"اكتب إيميل صحيح ونبذة قصيرة عن مشروعك.",fFail:"تعذّر الإرسال الحين، بيفتح لك تطبيق الإيميل والرسالة جاهزة.",fSending:"جارٍ الإرسال…",brand:"سعيد السهيمي",avail:"متاح لمشاريع العمل الحر",talk:"تواصل معي",kick:"البورتفوليو · 2026",
+  name:["سعيد","السهيمي"],role:"فنان بصري ومصمم رقمي",roleNote:"من مكة",
+  pitch:"أصمم عروضًا تقديمية تقنع، وواجهات سهلة الاستخدام، وبوستات تلفت النظر. وأطرّز بيدي أيضًا.",
+  see:"شاهد الأعمال",copy:"نسخ الإيميل",copied:"تم نسخ الإيميل",sel:"تم تحديد الإيميل، انسخه من هنا",
+  sec:{ui:"UI/UX",pres:"العروض التقديمية",graphic:"تصميم الجرافيك",art:"التطريز اليدوي"},
+  tools:"الأدوات التي أستخدمها",biT:"تصميم بلغتين",biS:"عربي وإنجليزي، ولكل لغة خطها واتجاهها.",talkT:"ابدأ مشروعك",talkB:"أخبرني عن فكرتك",
+  marq:["عروض تقديمية","عروض تفاعلية","عروض استثمارية","UI/UX","بوستات سوشال ميديا","بانش نيدل","رسم على القماش","سرد بصري"],
+  workH:"أعمال مختارة",workP:"مرتبة حسب التخصص. افتح أي مشروع لتقرأ القصة كاملة: المشكلة، وطريقتي في الحل، والنتيجة.",
+  open:"افتح القسم",projects:n=>n===1?"مشروع واحد":n===2?"مشروعان":`${n} مشاريع`,
+  sections:"الأقسام",close:"إغلاق",
+  cs:{ov:"نظرة عامة",ch:"التحدي",ap:"طريقتي",oc:"النتيجة",role:"دوري",tools:"الأدوات",type:"نوع المشروع",year:"السنة"},
+  full:"افتح دراسة الحالة كاملة ↗",tryMenu:"جرّب المنيو بنفسك ↗",wip:"قيد التطوير",pepCs:"افتح دراسة الحالة ↗",slide:"شريحة",img:"صورة",vid:"فيديو النموذج التفاعلي",
+  steps:[["الفهم","تحديد الهدف والجمهور والقيود."],["الاستكشاف","جمع المراجع ورسم الأفكار وتجربة الاتجاهات."],["التطوير","تحويل الاتجاه المختار إلى شرائح أو شاشات أو قطعة فنية."],["التحسين","ضبط كل تفصيلة حتى تُقرأ بوضوح."],["التسليم","تسليم ملفات نظيفة وجاهزة للاستخدام."]],
+  edu:[["ماجستير الفنون البصرية","جامعة أم القرى","قيد الدراسة"],["بكالوريوس الفنون البصرية","جامعة أم القرى",""],["معسكر تصميم واجهات المستخدم","نمكن",""]],
+  dock:{home:"الرئيسية",ui:"UI/UX",pres:"العروض التقديمية",graphic:"الجرافيك",art:"التطريز",about:"عنّي",mail:"تواصل"},
+  lang:"EN",langL:"Read the site in English"}
+};
+const STATIC={
+ en:{workH:null,workP:null,state:null,abody:null,ai:null,cNote:null,cH:null,loc:null,langs:null,shop:null,pecs:null,foot:null},
+ ar:{cLead:'اكتب لي وش تحتاج واترك إيميلك، توصلني رسالتك مباشرة على بريدي وأتواصل معك.',orMail:'أو راسلني مباشرة:',fKind:'وش تحتاج؟',fName:'اسمك',fMail:'إيميلك *',fMsg:'احكِ لي عن مشروعك *',fSend:'أرسل الطلب',fDoneH:'تم إرسال طلبك!',fDoneP:'شكرًا لك، وصلني طلبك وسيتم التواصل معك على إيميلك قريبًا.',state:'أنا <mark style="--c:var(--butter)">فنان بصري</mark> و<mark style="--c:var(--lilac)">مصمم رقمي</mark> أتنقّل بين الشاشات والشرائح <mark style="--c:var(--blush)">والقماش</mark>.',
+  abody:'<p>أعيش في مكة المكرمة، وأحمل بكالوريوس الفنون البصرية من جامعة أم القرى، وأدرس الماجستير في المجال نفسه.</p><p>أصمم العروض التقديمية والتفاعلية والواجهات وبوستات السوشال ميديا، وأحافظ على ممارسة يدوية بالبانش نيدل والرسم على القماش. كل جانب يغذّي الآخر: الفن يعطي التصميم إحساسه، والتصميم يعطي الفن وضوحه.</p>',
+  ai:'<b>الذكاء الاصطناعي في طريقة عملي.</b> أستخدم أدوات الذكاء الاصطناعي في البحث والأفكار الأولى واستكشاف الاتجاهات البصرية. أما الفكرة والقرارات البصرية واللمسة الأخيرة فمنّي، والأعمال اليدوية منفّذة بيدي بالكامل.',
+  cNote:'عندك مشروع في بالك؟',cH:'خلّنا نسوّيه <span>سوا.</span>',loc:'مكة المكرمة، السعودية',langs:'العربية · الإنجليزية',shop:'متجر Saeedarty للفن ↗',pecs:'دراسة حالة Practice English ↗',foot:'كل الأعمال المعروضة هنا من تنفيذي.'}
+};
+let LANG="en";
+const u=()=>T[LANG];
+const pf=(p,f)=>LANG==="ar"&&AR_P[p.id]&&AR_P[p.id][f]!==undefined?AR_P[p.id][f]:p[f];
+const area=k=>{const a=AREAS.find(x=>x.k===k);return LANG==="ar"?Object.assign({},a,AR_AREAS[k]):a};
+const list=k=>P.filter(p=>p.cat===k);
+const isTall=s=>/\/(pe-|emb-|asf-|su-|coffee-[a-z]|g-tote|g-tee)/.test(s)||isVid(s);
+const isVid=s=>/\.mp4$/.test(s);
+const isRound=s=>/\/(art-|hoop\.webp)/.test(s);
+const cover=p=>p.imgs.find(s=>!isVid(s));
+
+/* ===== bento ===== */
+function renderBento(){const L=u();
+ const words=L.name.map((w,i)=>`<span class="w"><span style="--i:${i}" class="${i?"hl":""}">${esc(w)}</span></span>`).join(" ");
+ const name=`<div class="tile b-name" style="--d:0"><div><div class="kick"><b></b>${L.kick}</div><h1>${words}</h1><p class="role">${L.role}<span class="note">${L.roleNote}</span></p><p class="pitch">${L.pitch}</p></div>
+  <div class="acts"><a class="btn dark" href="#contact">${L.talkT} ${ARW}</a></div></div>`;
+ const vis={
+  ui:`<span class="ph b"><img src="img/pe-home.webp" alt=""></span><span class="ph a"><img src="img/pe-splash-v3.webp" alt=""></span>`,
+  pres:`<span class="slides" id="deckv" style="aspect-ratio:16/9"><img src="img/note-pres.webp" data-p="0" alt=""><img src="img/qaf-1.jpg" data-p="1" alt=""><img src="img/pp-01.jpg" data-p="2" alt=""><img src="img/qaf-3.jpg" data-p="3" alt=""></span>`,
+  graphic:`<span class="fan" style="aspect-ratio:4/5"><img src="img/coffee-iced-latte.webp" alt=""><img src="img/su-01-truffle-burger.webp" alt=""><img src="img/coffee-cold-brew.webp" alt=""></span>`,
+  art:`<svg class="thread" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8 4 C 30 14, 12 30, 30 40"/></svg><span class="hoopv"><img src="img/hoop.webp" alt=""></span>`};
+ const secs=ORDER.map((k,i)=>`<button class="b-sec" type="button" data-sec="${k}" style="--c:${COL[k]};--d:${i+1}" aria-label="${L.open}: ${L.sec[k]}"><span class="vis">${vis[k]}</span><span class="lab"><span class="full">${L.sec[k]}</span><span class="short">${L.dock[k]}</span><i>${ARW}</i></span></button>`).join("");
+ const TL=[["Photoshop","Ps","#001E36","#31A8FF"],["Illustrator","Ai","#330000","#FF9A00"],["Figma","F","#1E1E1E","#fff"],["PowerPoint","P","#C43E1C","#fff"],["Claude","C","#D97757","#fff"]];
+ const tools=`<div class="tile b-tools" style="--d:5"><span class="t-h">${L.tools}</span><div class="tools">${TL.map(([n,a,c,f])=>`<span class="tool"><i style="--c:${c};color:${f}">${a}</i>${n}</span>`).join("")}</div></div>`;
+ const clock=`<div class="tile b-bi" style="--d:6"><span class="t-h">${L.biT}</span><span class="gl" aria-hidden="true"><b>ع</b><i>A</i></span><small>${L.biS}</small></div>`;
+ const talk=`<a class="b-talk" href="#contact" style="--d:7"><span class="t-h">${L.talkT}</span><b>${L.talkB}</b>${ARW}</a>`;
+ // order: name (2x2), then the four squares fill the two right columns, then the small tiles
+ $("#bento").innerHTML=name+secs+tools+talk;
+}
+let deckT=null;
+function deckCycle(){clearInterval(deckT);if(reduce)return;deckT=setInterval(()=>{const imgs=[...document.querySelectorAll("#deckv img")];imgs.forEach(im=>{const p=+im.dataset.p;im.dataset.p=p===0?3:p-1})},2600)}
+
+/* ===== marquee ===== */
+function renderMarq(){const star='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2z" fill="currentColor"/></svg>';
+ const one=u().marq.map(m=>`<span>${m}${star}</span>`).join("");$("#marq").innerHTML=one+one+one+one}
+
+/* ===== work index ===== */
+function renderGroups(){const L=u();let n=0;
+ $("#groups").innerHTML=ORDER.map(k=>{const a=area(k),items=list(k);
+  return `<div class="grp rv"><div class="ghead"><h3><i style="--c:${COL[k]}"></i>${L.sec[k]}</h3><button class="chipbtn" type="button" data-sec="${k}">${L.open} ${ARW}</button></div>
+  <ul class="rows">${items.map(p=>{n++;return `<li><button class="rowi" type="button" data-open="${p.id}" data-peek="${p.imgs[0]}"><span class="n">${String(n).padStart(2,"0")}</span><img class="th" src="${p.imgs[0]}" alt="" loading="lazy"><span class="ti">${esc(pf(p,"title"))}<small>${esc(pf(p,"sub"))}</small></span><span class="ca">${esc(pf(p,"sub"))}</span><span class="go">${ARW}</span></button></li>`}).join("")}</ul></div>`}).join("")}
+
+/* ===== about ===== */
+function renderAbout(){const L=u();
+ $("#edu").innerHTML=L.edu.map(([b,s,e])=>`<div><b>${b}</b>${e?`<em>${e}</em>`:""}<small>${s}</small></div>`).join("");
+ const C=["var(--lilac)","var(--mint)","var(--blush)","var(--butter)","var(--lilac)"];
+ $("#steps").innerHTML=L.steps.map(([b,s],i)=>`<li class="rv" style="--c:${C[i]}"><span class="k">0${i+1}</span><b>${b}</b><span>${s}</span></li>`).join("")}
+
+/* ===== dock ===== */
+function renderDock(){const D=u().dock;
+ const it=[["home","#home","#fff"],["ui","sec:ui",COL.ui],["pres","sec:pres",COL.pres],["graphic","sec:graphic",COL.graphic],["art","sec:art",COL.art],["sep"],["about","#about","#fff"],["mail","#contact","var(--ink)"]];
+ $("#dock").innerHTML=it.map(([k,h,c])=>k==="sep"?`<span class="dk sep" aria-hidden="true"></span>`:
+  `<button class="dk" type="button" data-dock="${h}" style="--c:${c};${k==="mail"?"color:#fff":""}" aria-label="${D[k]}">${ICON[k]}<span class="tip">${D[k]}</span></button>`).join("")}
+(function magnify(){const dock=$("#dock");if(reduce||matchMedia("(hover:none)").matches)return;
+ dock.addEventListener("mousemove",e=>{dock.querySelectorAll(".dk:not(.sep)").forEach(b=>{const r=b.getBoundingClientRect();const d=Math.abs(e.clientX-(r.left+r.width/2));const s=Math.max(0,1-d/150);const z=46+26*s*s;b.style.width=b.style.height=z+"px"})});
+ dock.addEventListener("mouseleave",()=>dock.querySelectorAll(".dk").forEach(b=>{b.style.width=b.style.height=""}))})();
+
+/* ===== section overlay ===== */
+let lastF=null;
+function openSec(k){$("#sv").dataset.k=k;const a=area(k),L=u(),items=list(k);lastF=document.activeElement;
+ $("#svCrumb").textContent=L.sec[k];
+ $("#svHead").innerHTML=`<span class="sw" style="--c:${COL[k]}">${ICON[k]}</span><div><h2 id="svT">${L.sec[k]}</h2><p>${esc(a.p)}</p></div>`;
+ if(k==="ui"){$("#svCards").innerHTML=`<div class="solos">`+items.map(p=>`<button class="solo" type="button" data-open="${p.id}"><span class="sphone${p.tablet?" stab":""}">${p.teaser?`<video src="${p.teaser}" poster="${cover(p)}" autoplay muted loop playsinline preload="auto"></video>`:`<img src="${cover(p)}" alt="" loading="lazy">`}</span><span class="scap"><b>${esc(pf(p,"title"))}</b>${p.wip?`<em class="wip">${L.wip}</em>`:""}<i>${ARW}</i></span></button>`).join("")+`</div>`;show("#sv");$("#svClose").focus();return}
+ if(k==="pres"){$("#svCards").innerHTML=items.map(p=>`<button class="slidecard" type="button" data-open="${p.id}"><span class="sc-im"><img src="${p.imgs[0]}" alt="" loading="lazy"></span><span class="sc-tx"><b>${esc(pf(p,"title"))}</b><small>${esc(pf(p,"sub"))}</small></span></button>`).join("");show("#sv");$("#svClose").focus();return}
+ $("#svCards").innerHTML=items.map(p=>{const t=isTall(p.imgs[0]),ph=k==="ui";return `<button class="card" type="button" data-open="${p.id}"><span class="im ${ph?"phone":isRound(p.imgs[0])?"round":t?"tall":""}" style="--c:${COL[k]}">${ph?`<span class="pf"><img src="${p.imgs[0]}" alt="" loading="lazy"></span><span class="pf pf2"><img src="${p.imgs[6]||p.imgs[0]}" alt="" loading="lazy"></span>`:`<img src="${p.imgs[0]}" alt="" loading="lazy">`}</span><span class="tx"><span class="mt">${esc(pf(p,"sub"))}</span><h3>${esc(pf(p,"title"))}</h3><p>${esc(pf(p,"overview"))}</p></span></button>`}).join("");
+ show("#sv");$("#svClose").focus()}
+function show(id){$(id).hidden=false;$(id).scrollTop=0;document.body.style.overflow="hidden"}
+function hide(id){$(id).hidden=true;if($("#sv").hidden&&$("#cs").hidden)document.body.style.overflow="";lastF&&lastF.focus&&lastF.focus()}
+
+/* ===== case study ===== */
+let cur=null,idx=0,lastC=null;
+function openCase(id){cur=P.find(p=>p.id===id);if(!cur)return;$("#cs").dataset.k=cur.cat;idx=0;lastC=document.activeElement;const L=u();
+ const k=cur.cat;$("#csCat").textContent=L.sec[k];$("#csCrumb").textContent=pf(cur,"title");
+ $("#csMeta").innerHTML=[L.sec[k],pf(cur,"type")].map(x=>`<span>${esc(x)}</span>`).join("")+(cur.wip?`<span class="wipchip">${L.wip}</span>`:"");
+ $("#csT").textContent=pf(cur,"title");$("#csSub").textContent=pf(cur,"overview");{const old=document.getElementById("csTry");old&&old.remove();if((cur.tablet||cur.wip)&&cur.link){const a=document.createElement("a");a.id="csTry";a.className="btn dark";a.style.marginTop="18px";a.href=cur.link;a.target="_blank";a.rel="noopener";a.textContent=cur.wip?L.pepCs:L.tryMenu;$("#csSub").after(a)}}
+ const deck=k==="pres"||cur.tablet;const st=$("#stage");st.className="stage"+(deck?" deck":k==="ui"?" phone":"");st.style.setProperty("--c",COL[k]);
+ $("#pv").innerHTML=ARL;$("#nx").innerHTML=ARW;
+ $("#thumbs").innerHTML=cur.imgs.map((s,i)=>`<button type="button" data-k="${i}" class="${isVid(s)?"tv":""}" style="--ta:${deck?"16/9":isTall(s)?"4/5":"1"}" aria-label="${isVid(s)?L.vid:deck?L.slide:L.img} ${i+1}"><img src="${isVid(s)?cover(cur):s}" alt="" loading="lazy"></button>`).join("");
+ $("#facts").innerHTML=`<div><h4>${L.cs.role}</h4><p>${esc(pf(cur,"role"))}</p></div><div><h4>${L.cs.tools}</h4><div class="tags">${pf(cur,"tools").map(t=>`<span>${esc(t)}</span>`).join("")}</div></div><div><h4>${L.cs.type}</h4><p>${esc(pf(cur,"type"))}</p></div>`+(cur.link?`<div><a class="btn dark" href="${cur.link}" target="_blank" rel="noopener">${cur.tablet?L.tryMenu:cur.wip?L.pepCs:L.full}</a></div>`:"");
+ $("#blocks").innerHTML=[["ch","challenge"],["ap","approach"],["oc","outcome"]].map(([h,f])=>`<div><h3><i></i>${L.cs[h]}</h3><p>${esc(pf(cur,f))}</p></div>`).join("");
+ paint();show("#cs");$("#csClose").focus()}
+function paint(){const n=cur.imgs.length;const sv=cur.imgs[idx],v=$("#csVid");if(isVid(sv)){v.hidden=false;$("#csImg").hidden=true;if(v.getAttribute("src")!==sv){v.src=sv;v.poster=cover(cur)}v.play&&v.play().catch(()=>{})}else{v.hidden=true;v.pause&&v.pause();$("#csImg").hidden=false;$("#csImg").src=sv}$("#csImg").classList.toggle("round",isRound(sv));$("#csImg").alt=`${pf(cur,"title")}, ${idx+1} / ${n}`;$("#ct").textContent=`${idx+1} / ${n}`;$("#prog").style.width=((idx+1)/n*100)+"%";
+ const one=n<2;$("#pv").hidden=one;$("#nx").hidden=one;
+ $("#thumbs").querySelectorAll("button").forEach((b,i)=>{b.setAttribute("aria-current",i===idx);if(i===idx)b.scrollIntoView({block:"nearest",inline:"nearest"})})}
+function step(d){if(!cur)return;idx=(idx+d+cur.imgs.length)%cur.imgs.length;paint()}
+$("#pv").onclick=()=>step(-1);$("#nx").onclick=()=>step(1);
+$("#thumbs").onclick=e=>{const b=e.target.closest("button");if(b){idx=+b.dataset.k;paint()}};
+$("#csClose").onclick=()=>{hide("#cs");lastC&&lastC.focus()};$("#svClose").onclick=()=>hide("#sv");
+document.addEventListener("keydown",e=>{if(!$("#cs").hidden){if(e.key==="Escape"){hide("#cs")}else if(e.key==="ArrowRight")step(1);else if(e.key==="ArrowLeft")step(-1)}else if(!$("#sv").hidden&&e.key==="Escape")hide("#sv")});
+let tx=null;$("#csImg").addEventListener("touchstart",e=>tx=e.touches[0].clientX,{passive:true});
+$("#csImg").addEventListener("touchend",e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>40)step(d<0?1:-1);tx=null});
+
+/* ===== clicks ===== */
+document.addEventListener("click",e=>{
+ const s=e.target.closest("[data-sec]");if(s){openSec(s.dataset.sec);return}
+ const o=e.target.closest("[data-open]");if(o){openCase(o.dataset.open);return}
+ const d=e.target.closest("[data-dock]");if(d){const h=d.dataset.dock;if(!$("#cs").hidden)hide("#cs");if(!$("#sv").hidden)hide("#sv");
+  if(h.startsWith("sec:"))openSec(h.slice(4));else{const t=document.querySelector(h);t&&t.scrollIntoView({behavior:reduce?"auto":"smooth"})}return}
+ const c=e.target.closest("[data-copy],#copy");if(c)copyMail()});
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),1900)}
+function copyMail(){const em="saeed2002s21@gmail.com";const sel=()=>{const g=getSelection(),r=document.createRange();r.selectNodeContents($("#mail"));g.removeAllRanges();g.addRange(r);toast(u().sel)};
+ try{navigator.clipboard.writeText(em).then(()=>toast(u().copied),sel)}catch(e){sel()}}
+
+
+/* ===== contact form ===== */
+const picked=new Set();
+function renderKinds(){$("#kinds").innerHTML=u().kinds.map((k,i)=>`<button type="button" class="kind" data-k="${i}" aria-pressed="${picked.has(i)}">${k}</button>`).join("")}
+$("#kinds").addEventListener("click",e=>{const b=e.target.closest(".kind");if(!b)return;const i=+b.dataset.k;picked.has(i)?picked.delete(i):picked.add(i);b.setAttribute("aria-pressed",picked.has(i))});
+$("#cform").addEventListener("submit",async e=>{e.preventDefault();const L=u();
+ const name=$("#fName").value.trim(),mail=$("#fMail").value.trim(),msg=$("#fMsg").value.trim();
+ const okMail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail);
+ $("#fMail").setAttribute("aria-invalid",!okMail);$("#fMsg").setAttribute("aria-invalid",!msg);
+ if(!okMail||!msg){$("#fErr").textContent=L.fBad;return}
+ $("#fErr").textContent="";const btn=$("#fSend");btn.disabled=true;const lab=btn.querySelector("span");const old=lab.textContent;lab.textContent=L.fSending;
+ const kinds=[...picked].map(i=>T.en.kinds[i]).join(", ")||"-";
+ const body={name:name||"-",email:mail,project_type:kinds,message:msg,_subject:"New project request from your portfolio",_template:"table",_captcha:"false"};
+ let ok=false;
+ try{const r=await fetch("https://formsubmit.co/ajax/saeed2002s21@gmail.com",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(body)});
+  const j=await r.json().catch(()=>({}));ok=r.ok&&String(j.success)==="true"}catch(err){ok=false}
+ btn.disabled=false;lab.textContent=old;
+ if(ok){$("#fBody").hidden=true;$("#fDone").hidden=false;$("#fDone").setAttribute("tabindex","-1");$("#fDone").focus({preventScroll:true})}
+ else{$("#fErr").textContent=L.fFail;
+  const sub=encodeURIComponent("Project request: "+kinds);const txt=encodeURIComponent(`Name: ${name||"-"}\nEmail: ${mail}\nNeeds: ${kinds}\n\n${msg}`);
+  setTimeout(()=>{location.href=`mailto:saeed2002s21@gmail.com?subject=${sub}&body=${txt}`},900)}
+});
+/* ===== language ===== */
+const EN0={};document.querySelectorAll("[data-i]").forEach(el=>EN0[el.dataset.i]=el.innerHTML);
+function setLang(l,save){LANG=l;const r=document.documentElement;r.lang=l;r.dir=l==="ar"?"rtl":"ltr";const L=u();
+ document.querySelectorAll("[data-i]").forEach(el=>{const k=el.dataset.i;let v;
+  if(l==="ar"&&STATIC.ar[k]!==undefined)v=STATIC.ar[k];else if(typeof L[k]==="string")v=L[k];else v=EN0[k];
+  if(k==="close"||k==="sections")v=L[k];if(v!==undefined)el.innerHTML=v});
+ $("#lang").textContent=L.lang;$("#lang").setAttribute("aria-label",L.langL);
+ renderBento();renderMarq();renderKinds();renderAbout();renderDock();deckCycle();
+ if(cur&&!$("#cs").hidden)openCase(cur.id);
+ if(save){try{localStorage.setItem("pf2-lang",l)}catch(e){}}}
+$("#lang").onclick=()=>setLang(LANG==="ar"?"en":"ar",true);
+let saved="en";try{saved=localStorage.getItem("pf2-lang")||"en"}catch(e){}
+setLang(saved,false);
+</script>
+</body>
+</html>
