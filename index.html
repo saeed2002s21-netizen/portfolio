@@ -365,18 +365,18 @@ html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
 .stage img.round{box-shadow:none;border-radius:0;filter:drop-shadow(0 26px 30px rgba(60,40,10,.35));max-height:70vh}
 .solo{all:unset;cursor:pointer;grid-column:1/-1;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:18px;padding:8px 0 40px}
 .solo:focus-visible{outline:3px solid var(--accent);outline-offset:6px;border-radius:20px}
-.sphone{display:block;position:relative;height:min(66vh,620px);aspect-ratio:600/1298;background:#151513;border-radius:13%/6%;padding:2.4%;box-sizing:border-box;box-shadow:0 40px 60px -30px rgba(30,20,60,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sphone{display:block;position:relative;height:min(66vh,620px);aspect-ratio:600/1298;background:#151513;border-radius:13%/6%;padding:1.9%;box-sizing:border-box;box-shadow:0 40px 60px -30px rgba(30,20,60,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .sphone img,.sphone video{display:block;width:100%;height:100%;object-fit:cover;border-radius:10.5%/4.85%;background:#fff}
 .sphone:not(.stab){box-shadow:inset 0 0 0 1.5px #3b3a37,0 40px 60px -30px rgba(30,20,60,.55)}
 .solos{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:clamp(24px,4vw,56px);padding-inline-start:calc(clamp(70px,9vw,120px) + 22px)}
 .solos .solo{padding-top:0}
-.solos .sphone{height:min(58vh,560px)}
+.solos .sphone{height:min(50vh,470px)}
 .solos .sphone.stab{aspect-ratio:16/9;height:auto;width:min(760px,80vw);border-radius:26px;padding:12px}
 .solos .solo:has(.stab){flex-basis:100%;align-items:flex-start}
 .solos .sphone.stab img{border-radius:14px}
 @media (max-width:900px){.solos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px;padding-inline-start:0;justify-items:center}
  .solos .solo{grid-column:auto;gap:10px;padding-bottom:10px;width:100%;justify-self:stretch}
- .solos .sphone{height:auto;width:100%;max-width:240px}
+ .solos .sphone{height:auto;width:100%;max-width:185px}
  .solos .solo:has(.stab){grid-column:1/-1}
  .solos .sphone.stab{max-width:none;width:100%;border-radius:18px;padding:6px}
  .solos .sphone.stab img{border-radius:12px}
@@ -439,17 +439,21 @@ html[lang="ar"] .cshead h2{letter-spacing:0;line-height:1.25}
 .pchip.on{opacity:1;transform:none}
 .pchip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pp 1.4s infinite}
 @keyframes pp{50%{opacity:.25}}
-.sphone.pph{height:min(74vh,700px);width:auto;max-width:92vw;cursor:default}
+.sphone.pph{height:min(66vh,620px);padding:1.9%;width:auto;max-width:92vw;cursor:default}
 .sphone.pph:hover{transform:none}
 .pscr{position:relative;width:100%;height:100%;overflow:hidden;border-radius:10.5%/4.85%;background:#fff}
-.pscr img,.pscr video{position:absolute;inset:0;width:100%!important;height:100%!important;object-fit:fill!important;border-radius:0!important;display:block;transition:opacity .28s}
-.pscr img.fade{opacity:0}
+.pscr>video,.pscr .pbg{position:absolute;inset:0;width:100%!important;height:100%!important;object-fit:fill!important;border-radius:0!important;display:block}
+.pcont{position:absolute;inset:0;transition:opacity .25s}.pcont.fade{opacity:0}
+.psc{position:absolute;left:0;right:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.psc::-webkit-scrollbar{display:none}
+.psi{position:relative}.pscr .psi img{position:static;display:block;width:100%!important;height:auto!important;border-radius:0!important}
+.pov{position:absolute}.pscr .pov img{display:block;width:100%!important;height:100%!important;border-radius:0!important}.pov.off{display:none}
 .phs{position:absolute;inset:0}
 .phs button{all:unset;position:absolute;cursor:pointer;border-radius:12px;transition:background .25s,box-shadow .25s}
-.phs.hint button{background:rgba(232,87,26,.22);box-shadow:0 0 0 2px rgba(232,87,26,.75)}
+.pcont.hint .phs button{background:rgba(232,87,26,.22);box-shadow:0 0 0 2px rgba(232,87,26,.75)}
 .pbar{display:flex;gap:10px}
 .pbar button[hidden]{display:none}
-@media (max-width:560px){.sphone.pph{height:min(68vh,600px)}}
+@media (max-width:560px){.sphone.pph{height:min(60vh,520px)}}
 .stage{position:relative;border-radius:var(--r);background:var(--c);overflow:hidden;display:grid;place-items:center;padding:clamp(14px,3vw,40px)}
 .stage img{max-width:100%;max-height:72vh;border-radius:10px;box-shadow:0 24px 40px -24px rgba(0,0,0,.5)}
 .stage.deck{background:#16161A;padding:clamp(10px,2vw,28px)}
@@ -551,7 +555,7 @@ html[lang="ar"] .facts h4{letter-spacing:0;font-size:14px}
   <div class="ovbar"><div class="wrap"><div class="crumb"><span id="csCat"></span><span>/</span><b id="csCrumb"></b></div><button class="chipbtn" type="button" id="csClose" data-i="close">Close</button></div></div>
   <div class="wrap">
     <div class="cshead"><div class="mt" id="csMeta"></div><h2 id="csT"></h2><p class="sub" id="csSub"></p></div>
-    <div class="proto" id="proto" hidden><div class="ptop"><span class="pchip" id="pChip"></span></div><div class="sphone pph" id="pPh"><div class="pscr" id="pScr"><img id="pImg" alt=""><video id="pVid" muted playsinline preload="auto"></video><div class="phs" id="pHs"></div></div></div><div class="pbar"><button type="button" class="chipbtn" id="pSkip"></button><button type="button" class="chipbtn" id="pRe"></button></div></div>
+    <div class="proto" id="proto" hidden><div class="ptop"><span class="pchip" id="pChip"></span></div><div class="sphone pph" id="pPh"><div class="pscr"><video id="pVid" muted playsinline preload="auto"></video><div class="pcont" id="pScr" hidden></div></div></div><div class="pbar"><button type="button" class="chipbtn" id="pSkip"></button><button type="button" class="chipbtn" id="pRe"></button></div></div>
     <div class="stage" id="stage"><img id="csImg" alt=""><video id="csVid" muted loop playsinline autoplay hidden></video><button class="nv pv" type="button" id="pv" aria-label="Previous"></button><button class="nv nx" type="button" id="nx" aria-label="Next"></button><span class="ct" id="ct"></span><span class="prog"><i id="prog"></i></span></div>
     <div class="thumbs" id="thumbs"></div>
     <div class="story"><div class="facts" id="facts"></div><div class="blocks" id="blocks"></div></div>
@@ -923,29 +927,39 @@ function paint(){const n=cur.imgs.length;const sv=cur.imgs[idx],v=$("#csVid");if
  $("#thumbs").querySelectorAll("button").forEach((b,i)=>{b.setAttribute("aria-current",i===idx);if(i===idx)b.scrollIntoView({block:"nearest",inline:"nearest"})})}
 
 /* ===== interactive prototypes ===== */
-const NAVP=[[27,87,15,10,"settings"],[42,87,15,10,"home"],[57,87,15,10,"saved"]];
+const NAVP=[[105,734,59,84,"settings"],[164,734,59,84,"home"],[222,734,59,84,"saved"]];
 const PROTO={
  pe:{ar:"600/1298",anim:"vid/pe-intro.mp4",start:"onb1",pre:"img/pe-",s:{
-  onb1:[[66,85,32,11,"onb2"]],onb2:[[66,85,32,11,"onb3"]],onb3:[[66,85,32,11,"login"]],
-  login:[[16,63,68,10,"info"],[16,78,68,6,"info"]],info:[[16,75,68,10,"home"]],
-  home:[[50,64,47,12,"read"],[3,76,45,12,"listen"],[3,12,26,7,"weekly"],...NAVP],
-  weekly:[[50,64,47,12,"read"],[3,76,45,12,"listen"],[3,12,28,7,"home"],...NAVP],
-  read:[[1,4,15,8,"home"],[11,72,26,6,"read_pop"],[60,76,20,5,"read_pop"],[37,89,60,9,"done"]],
-  read_pop:[[2,76,96,11,"read"],[1,4,15,8,"home"],[37,89,60,9,"done"]],
-  done:[[8,83,84,9,"home"],[28,92,44,6,"read"]],
-  listen:[[1,4,15,8,"home"],[8,89,84,9,"done"]],
-  saved:[...NAVP],settings:[[3,80,94,8,"login"],...NAVP]}}
+  onb1:{i:"onb1.webp",h:[[257,717,125,93,"onb2"]]},onb2:{i:"onb2.webp",h:[[257,717,125,93,"onb3"]]},onb3:{i:"onb3.webp",h:[[257,717,125,93,"login"]]},
+  login:{i:"login.webp",h:[[62,532,265,84,"info"]]},info:{i:"info.webp",h:[[62,633,265,84,"home"]]},
+  home:{sc:{src:"home-tall.webp",top:0,bot:844,H:1000,h:[[201,566,165,82,"read"],[22,660,166,82,"listen"],[22,123,95,29,"weekly"]]},
+   ov:[{src:"nav.webp",x:99,y:755,w:192,h:44,hh:[[0,0,64,44,"settings"],[64,0,64,44,"home"],[128,0,64,44,"saved"]]}]},
+  weekly:{i:"weekly.webp",h:[[195,540,183,101,"read"],[12,641,176,101,"listen"],[12,101,109,59,"home"],...NAVP]},
+  read:{i:"read.webp",h:[[4,34,59,68,"home"]],sc:{src:"read-tall.webp",top:136,bot:844,H:1168,h:[[50,490,100,26,"#pop"]]},
+   ov:[{src:"bbar.webp",x:0,y:746,w:390,h:98,hh:[[18,14,62,56,"listen"],[150,14,222,56,"done"]]},{src:"pop.webp",id:"pop",hid:1,x:24,y:655,w:342,h:73,hh:[[0,0,342,73,"#pop"]]}]},
+  done:{i:"done.webp",h:[[31,700,328,76,"home"],[109,776,172,51,"read"]]},
+  listen:{i:"listen.webp",h:[[4,34,59,68,"home"],[31,751,328,76,"done"]]},
+  saved:{i:"saved.webp",h:[...NAVP]},settings:{i:"settings.webp",h:[[12,675,367,68,"login"],...NAVP]}}}
 };
 let PR=null,pScreen=null,hintT=0;
-function pShow(name){const c=PROTO[PR];pScreen=name;const im=$("#pImg");im.classList.add("fade");
- setTimeout(()=>{im.src=c.pre+name+".webp";im.onload=()=>im.classList.remove("fade")},reduce?0:140);
- $("#pHs").innerHTML=c.s[name].map(([x,y,w,h,to])=>`<button type="button" data-to="${to}" style="left:${x}%;top:${y}%;width:${w}%;height:${h}%" aria-label="${to}"></button>`).join("")}
-function pInteractive(){const v=$("#pVid");v.pause();v.hidden=true;$("#pImg").hidden=false;$("#pChip").classList.add("on");$("#pSkip").hidden=true;pShow(PROTO[PR].start)}
+const pct=(v,b)=>(v/b*100)+"%";
+const hsB=(arr,bw,bh)=>`<div class="phs">`+arr.map(([x,y,w,h,to])=>`<button type="button" data-to="${to}" style="left:${pct(x,bw)};top:${pct(y,bh)};width:${pct(w,bw)};height:${pct(h,bh)}" aria-label="${to.replace("#","")}"></button>`).join("")+`</div>`;
+function pHTML(c,s){let h="";
+ if(s.i)h+=`<img class="pbg" src="${c.pre+s.i}" alt="">`+hsB(s.h||[],390,844);
+ if(s.sc){const q=s.sc;h+=`<div class="psc" style="top:${pct(q.top,844)};bottom:${pct(844-q.bot,844)}"><div class="psi"><img src="${c.pre+q.src}" alt="">${hsB(q.h,390,q.H)}</div></div>`}
+ (s.ov||[]).forEach(o=>{h+=`<div class="pov${o.hid?" off":""}"${o.id?` data-id="${o.id}"`:""} style="left:${pct(o.x,390)};top:${pct(o.y,844)};width:${pct(o.w,390)};height:${pct(o.h,844)}"><img src="${c.pre+o.src}" alt="">${hsB(o.hh||[],o.w,o.h)}</div>`});
+ return h}
+function pShow(name){const c=PROTO[PR];pScreen=name;const R=$("#pScr");R.classList.add("fade");
+ setTimeout(()=>{R.innerHTML=pHTML(c,c.s[name]);requestAnimationFrame(()=>R.classList.remove("fade"))},reduce?0:150)}
+function pInteractive(){const v=$("#pVid");v.pause();v.hidden=true;$("#pScr").hidden=false;$("#pChip").classList.add("on");$("#pSkip").hidden=true;pShow(PROTO[PR].start)}
 function pStart(){const c=PROTO[PR],v=$("#pVid"),L=u();$("#pChip").textContent=L.pTry;$("#pChip").classList.remove("on");$("#pSkip").textContent=L.pSkip;$("#pRe").textContent="↺ "+L.pRe;
- $("#pHs").innerHTML="";$("#pImg").hidden=true;$("#pSkip").hidden=false;v.hidden=false;v.src=c.anim;v.currentTime=0;
+ $("#pScr").innerHTML="";$("#pScr").hidden=true;$("#pSkip").hidden=false;v.hidden=false;v.src=c.anim;v.currentTime=0;
  v.onended=pInteractive;v.onerror=pInteractive;const pr=v.play();pr&&pr.catch(()=>pInteractive())}
-function openProto(id){PR=id;const c=PROTO[id];$("#pPh").style.aspectRatio=c.ar;Object.keys(c.s).forEach(n=>{const i=new Image();i.src=c.pre+n+".webp"});pStart()}
-$("#pHs").onclick=e=>{const b=e.target.closest("button");if(b){pShow(b.dataset.to)}else{const h=$("#pHs");h.classList.add("hint");clearTimeout(hintT);hintT=setTimeout(()=>h.classList.remove("hint"),700)}};
+function openProto(id){PR=id;const c=PROTO[id];$("#pPh").style.aspectRatio=c.ar;Object.values(c.s).forEach(s=>[s.i,s.sc&&s.sc.src,...(s.ov||[]).map(o=>o.src)].filter(Boolean).forEach(f=>{const i=new Image();i.src=c.pre+f}));pStart()}
+$("#pScr").onclick=e=>{const R=$("#pScr"),b=e.target.closest("button[data-to]"),pop=R.querySelector('.pov[data-id]:not(.off)');
+ if(b){const to=b.dataset.to;if(to[0]==="#"){const o=R.querySelector(`.pov[data-id="${to.slice(1)}"]`);o&&o.classList.toggle("off")}else pShow(to);return}
+ if(pop){pop.classList.add("off");return}
+ R.classList.add("hint");clearTimeout(hintT);hintT=setTimeout(()=>R.classList.remove("hint"),700)};
 $("#pSkip").onclick=pInteractive;$("#pRe").onclick=pStart;
 function step(d){if(!cur)return;idx=(idx+d+cur.imgs.length)%cur.imgs.length;paint()}
 $("#pv").onclick=()=>step(-1);$("#nx").onclick=()=>step(1);
