@@ -928,19 +928,7 @@ function paint(){const n=cur.imgs.length;const sv=cur.imgs[idx],v=$("#csVid");if
 
 /* ===== interactive prototypes ===== */
 const NAVP=[[105,734,59,84,"settings"],[164,734,59,84,"home"],[222,734,59,84,"saved"]];
-const PROTO={
- pe:{ar:"600/1298",anim:"vid/pe-intro.mp4",start:"onb1",pre:"img/pe-",s:{
-  onb1:{i:"onb1.webp",h:[[257,717,125,93,"onb2"]]},onb2:{i:"onb2.webp",h:[[257,717,125,93,"onb3"]]},onb3:{i:"onb3.webp",h:[[257,717,125,93,"login"]]},
-  login:{i:"login.webp",h:[[62,532,265,84,"info"]]},info:{i:"info.webp",h:[[62,633,265,84,"home"]]},
-  home:{sc:{src:"home-tall.webp",top:0,bot:844,H:1000,h:[[201,566,165,82,"read"],[22,660,166,82,"listen"],[22,123,95,29,"weekly"]]},
-   ov:[{src:"nav.webp",x:99,y:755,w:192,h:44,hh:[[0,0,64,44,"settings"],[64,0,64,44,"home"],[128,0,64,44,"saved"]]}]},
-  weekly:{i:"weekly.webp",h:[[195,540,183,101,"read"],[12,641,176,101,"listen"],[12,101,109,59,"home"],...NAVP]},
-  read:{i:"read.webp",h:[[4,34,59,68,"home"]],sc:{src:"read-tall.webp",top:136,bot:844,H:1168,h:[[50,490,100,26,"#pop"]]},
-   ov:[{src:"bbar.webp",x:0,y:746,w:390,h:98,hh:[[18,14,62,56,"listen"],[150,14,222,56,"done"]]},{src:"pop.webp",id:"pop",hid:1,x:24,y:655,w:342,h:73,hh:[[0,0,342,73,"#pop"]]}]},
-  done:{i:"done.webp",h:[[31,700,328,76,"home"],[109,776,172,51,"read"]]},
-  listen:{i:"listen.webp",h:[[4,34,59,68,"home"],[31,751,328,76,"done"]]},
-  saved:{i:"saved.webp",h:[...NAVP]},settings:{i:"settings.webp",h:[[12,675,367,68,"login"],...NAVP]}}}
-};
+const PROTO={};
 let PR=null,pScreen=null,hintT=0;
 const pct=(v,b)=>(v/b*100)+"%";
 const hsB=(arr,bw,bh)=>`<div class="phs">`+arr.map(([x,y,w,h,to])=>`<button type="button" data-to="${to}" style="left:${pct(x,bw)};top:${pct(y,bh)};width:${pct(w,bw)};height:${pct(h,bh)}" aria-label="${to.replace("#","")}"></button>`).join("")+`</div>`;
