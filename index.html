@@ -928,24 +928,13 @@ const PROTO={
  pe:{ar:"600/1298",anim:"vid/pe-intro.mp4",start:"onb1",pre:"img/pe-",s:{
   onb1:[[66,85,32,11,"onb2"]],onb2:[[66,85,32,11,"onb3"]],onb3:[[66,85,32,11,"login"]],
   login:[[16,63,68,10,"info"],[16,78,68,6,"info"]],info:[[16,75,68,10,"home"]],
-  home:[[3,64,45,12,"info"],[50,64,47,12,"read"],[3,76,45,12,"listen"],[50,76,47,12,"read"],[3,12,26,7,"weekly"],...NAVP],
-  weekly:[[3,64,45,12,"info"],[50,64,47,12,"read"],[3,76,45,12,"listen"],[50,76,47,12,"read"],[3,12,28,7,"home"],...NAVP],
+  home:[[50,64,47,12,"read"],[3,76,45,12,"listen"],[3,12,26,7,"weekly"],...NAVP],
+  weekly:[[50,64,47,12,"read"],[3,76,45,12,"listen"],[3,12,28,7,"home"],...NAVP],
   read:[[1,4,15,8,"home"],[11,72,26,6,"read_pop"],[60,76,20,5,"read_pop"],[37,89,60,9,"done"]],
   read_pop:[[2,76,96,11,"read"],[1,4,15,8,"home"],[37,89,60,9,"done"]],
   done:[[8,83,84,9,"home"],[28,92,44,6,"read"]],
   listen:[[1,4,15,8,"home"],[8,89,84,9,"done"]],
-  saved:[...NAVP],settings:[[3,80,94,8,"login"],...NAVP]}},
- emb:{ar:"750/1581",anim:"vid/emb-anim.mp4",start:"onb1",pre:"img/emb-",s:{
-  onb1:[[9,76,82,9,"onb2"]],onb2:[[9,76,82,9,"onb3"]],onb3:[[9,76,82,9,"login"]],
-  login:[[9,72,82,7,"home"],[9,79,82,7,"home"]],
-  home:[[4,29,92,30,"detail"],[4,63,44,29,"detail"],[51,63,45,29,"detail"],[55,89,18,10,"checkout"]],
-  detail:[[0,5,16,8,"home"],[36,87,58,10,"checkout"],[3,87,24,10,"checkout"]],
-  checkout:[[0,5,16,7,"detail"],[4,86,92,9,"home"]]}},
- asf:{ar:"750/1498",anim:"vid/asf-anim.mp4",start:"onb1",pre:"img/asf-",s:{
-  onb1:[[8,87,84,10,"onb2"]],onb2:[[8,87,84,10,"onb3"]],onb3:[[8,87,84,10,"login"]],
-  login:[[7,77,86,9,"home"],[7,68,86,9,"home"]],
-  home:[[8,64,53,27,"detail"],[63,64,37,27,"detail"]],
-  detail:[[0,6,15,8,"home"],[60,88,38,10,"home"]]}}
+  saved:[...NAVP],settings:[[3,80,94,8,"login"],...NAVP]}}
 };
 let PR=null,pScreen=null,hintT=0;
 function pShow(name){const c=PROTO[PR];pScreen=name;const im=$("#pImg");im.classList.add("fade");
