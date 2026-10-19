@@ -358,6 +358,7 @@ html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
 #sv[data-k="art"] .card .tx{padding:4px 8px 10px;text-align:center;justify-items:center}
 #sv[data-k="art"] .card .tx p{display:none}
 #cs[data-k="art"] .stage{background:none}
+#cs[data-k="ui"] .stage:not(.deck){background:none}
 .card .im.round{aspect-ratio:16/11;position:relative}
 .card .im.round img{position:absolute;inset:0;width:100%;height:100%;padding:6%;box-sizing:border-box;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(60,40,10,.35))}
 .card:hover .im.round img{transform:rotate(-4deg) scale(1.03)}
@@ -432,6 +433,23 @@ html[lang="ar"] .card h3{letter-spacing:0;line-height:1.4}
 .cshead h2{font-size:clamp(40px,7vw,104px);letter-spacing:-.05em;margin-top:14px}
 html[lang="ar"] .cshead h2{letter-spacing:0;line-height:1.25}
 .cshead .sub{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);margin-top:10px;max-width:60ch}
+.proto{display:flex;flex-direction:column;align-items:center;gap:16px;padding:6px 0 10px}
+.proto .ptop{min-height:34px;display:flex;align-items:center}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font:600 14px var(--body);color:var(--ink);opacity:0;transform:translateY(4px);transition:.4s}
+.pchip.on{opacity:1;transform:none}
+.pchip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pp 1.4s infinite}
+@keyframes pp{50%{opacity:.25}}
+.sphone.pph{height:min(74vh,700px);width:auto;max-width:92vw;cursor:default}
+.sphone.pph:hover{transform:none}
+.pscr{position:relative;width:100%;height:100%;overflow:hidden;border-radius:10.5%/4.85%;background:#fff}
+.pscr img,.pscr video{position:absolute;inset:0;width:100%!important;height:100%!important;object-fit:fill!important;border-radius:0!important;display:block;transition:opacity .28s}
+.pscr img.fade{opacity:0}
+.phs{position:absolute;inset:0}
+.phs button{all:unset;position:absolute;cursor:pointer;border-radius:12px;transition:background .25s,box-shadow .25s}
+.phs.hint button{background:rgba(232,87,26,.22);box-shadow:0 0 0 2px rgba(232,87,26,.75)}
+.pbar{display:flex;gap:10px}
+.pbar button[hidden]{display:none}
+@media (max-width:560px){.sphone.pph{height:min(68vh,600px)}}
 .stage{position:relative;border-radius:var(--r);background:var(--c);overflow:hidden;display:grid;place-items:center;padding:clamp(14px,3vw,40px)}
 .stage img{max-width:100%;max-height:72vh;border-radius:10px;box-shadow:0 24px 40px -24px rgba(0,0,0,.5)}
 .stage.deck{background:#16161A;padding:clamp(10px,2vw,28px)}
@@ -533,6 +551,7 @@ html[lang="ar"] .facts h4{letter-spacing:0;font-size:14px}
   <div class="ovbar"><div class="wrap"><div class="crumb"><span id="csCat"></span><span>/</span><b id="csCrumb"></b></div><button class="chipbtn" type="button" id="csClose" data-i="close">Close</button></div></div>
   <div class="wrap">
     <div class="cshead"><div class="mt" id="csMeta"></div><h2 id="csT"></h2><p class="sub" id="csSub"></p></div>
+    <div class="proto" id="proto" hidden><div class="ptop"><span class="pchip" id="pChip"></span></div><div class="sphone pph" id="pPh"><div class="pscr" id="pScr"><img id="pImg" alt=""><video id="pVid" muted playsinline preload="auto"></video><div class="phs" id="pHs"></div></div></div><div class="pbar"><button type="button" class="chipbtn" id="pSkip"></button><button type="button" class="chipbtn" id="pRe"></button></div></div>
     <div class="stage" id="stage"><img id="csImg" alt=""><video id="csVid" muted loop playsinline autoplay hidden></video><button class="nv pv" type="button" id="pv" aria-label="Previous"></button><button class="nv nx" type="button" id="nx" aria-label="Next"></button><span class="ct" id="ct"></span><span class="prog"><i id="prog"></i></span></div>
     <div class="thumbs" id="thumbs"></div>
     <div class="story"><div class="facts" id="facts"></div><div class="blocks" id="blocks"></div></div>
@@ -789,7 +808,7 @@ const T={
   open:"Open section",projects:n=>n===1?"1 project":`${n} projects`,
   sections:"Sections",close:"Close",
   cs:{ov:"Overview",ch:"The challenge",ap:"My approach",oc:"The outcome",role:"My role",tools:"Tools",type:"Project type",year:"Year"},
-  full:"Open the full case study ↗",tryMenu:"Try the live menu ↗",wip:"In development",pepCs:"Open the case study ↗",slide:"Slide",img:"Image",vid:"Prototype video",
+  full:"Open the full case study ↗",tryMenu:"Try the live menu ↗",pTry:"Try the app · tap the buttons",pSkip:"Skip intro",pRe:"Restart",pPlay:"Intro",wip:"In development",pepCs:"Open the case study ↗",slide:"Slide",img:"Image",vid:"Prototype video",
   steps:[["Understand","Define the goal, the audience and the constraints."],["Explore","Gather references, sketch ideas and test directions."],["Develop","Build the chosen direction into slides, screens or a piece."],["Refine","Tighten every detail until it reads clearly."],["Deliver","Hand over clean, ready-to-use files."]],
   edu:[["Master's in Visual Arts","Umm Al-Qura University","In progress"],["Bachelor's in Visual Arts","Umm Al-Qura University",""],["UI Design Bootcamp","Numkan",""]],
   dock:{home:"Home",ui:"UI/UX",pres:"Presentations",graphic:"Graphic",art:"Embroidery",about:"About",mail:"Contact"},
@@ -805,7 +824,7 @@ const T={
   open:"افتح القسم",projects:n=>n===1?"مشروع واحد":n===2?"مشروعان":`${n} مشاريع`,
   sections:"الأقسام",close:"إغلاق",
   cs:{ov:"نظرة عامة",ch:"التحدي",ap:"طريقتي",oc:"النتيجة",role:"دوري",tools:"الأدوات",type:"نوع المشروع",year:"السنة"},
-  full:"افتح دراسة الحالة كاملة ↗",tryMenu:"جرّب المنيو بنفسك ↗",wip:"قيد التطوير",pepCs:"افتح دراسة الحالة ↗",slide:"شريحة",img:"صورة",vid:"فيديو النموذج التفاعلي",
+  full:"افتح دراسة الحالة كاملة ↗",tryMenu:"جرّب المنيو بنفسك ↗",pTry:"جرّب التطبيق · اضغط على الأزرار",pSkip:"تخطّي",pRe:"من البداية",pPlay:"المقدمة",wip:"قيد التطوير",pepCs:"افتح دراسة الحالة ↗",slide:"شريحة",img:"صورة",vid:"فيديو النموذج التفاعلي",
   steps:[["الفهم","تحديد الهدف والجمهور والقيود."],["الاستكشاف","جمع المراجع ورسم الأفكار وتجربة الاتجاهات."],["التطوير","تحويل الاتجاه المختار إلى شرائح أو شاشات أو قطعة فنية."],["التحسين","ضبط كل تفصيلة حتى تُقرأ بوضوح."],["التسليم","تسليم ملفات نظيفة وجاهزة للاستخدام."]],
   edu:[["ماجستير الفنون البصرية","جامعة أم القرى","قيد الدراسة"],["بكالوريوس الفنون البصرية","جامعة أم القرى",""],["معسكر تصميم واجهات المستخدم","نمكن",""]],
   dock:{home:"الرئيسية",ui:"UI/UX",pres:"العروض التقديمية",graphic:"الجرافيك",art:"التطريز",about:"عنّي",mail:"تواصل"},
@@ -897,14 +916,52 @@ function openCase(id){cur=P.find(p=>p.id===id);if(!cur)return;$("#cs").dataset.k
  $("#thumbs").innerHTML=cur.imgs.map((s,i)=>`<button type="button" data-k="${i}" class="${isVid(s)?"tv":""}" style="--ta:${deck?"16/9":isTall(s)?"4/5":"1"}" aria-label="${isVid(s)?L.vid:deck?L.slide:L.img} ${i+1}"><img src="${isVid(s)?cover(cur):s}" alt="" loading="lazy"></button>`).join("");
  $("#facts").innerHTML=`<div><h4>${L.cs.role}</h4><p>${esc(pf(cur,"role"))}</p></div><div><h4>${L.cs.tools}</h4><div class="tags">${pf(cur,"tools").map(t=>`<span>${esc(t)}</span>`).join("")}</div></div><div><h4>${L.cs.type}</h4><p>${esc(pf(cur,"type"))}</p></div>`+(cur.link?`<div><a class="btn dark" href="${cur.link}" target="_blank" rel="noopener">${cur.tablet?L.tryMenu:cur.wip?L.pepCs:L.full}</a></div>`:"");
  $("#blocks").innerHTML=[["ch","challenge"],["ap","approach"],["oc","outcome"]].map(([h,f])=>`<div><h3><i></i>${L.cs[h]}</h3><p>${esc(pf(cur,f))}</p></div>`).join("");
- paint();show("#cs");$("#csClose").focus()}
+ const pp=!!PROTO[cur.id];$("#proto").hidden=!pp;$("#stage").hidden=pp;$("#thumbs").hidden=pp;if(pp){openProto(cur.id)}else{$("#pVid").pause()}
+ paint();if(pp)$("#csVid").pause();show("#cs");$("#csClose").focus()}
 function paint(){const n=cur.imgs.length;const sv=cur.imgs[idx],v=$("#csVid");if(isVid(sv)){v.hidden=false;$("#csImg").hidden=true;if(v.getAttribute("src")!==sv){v.src=sv;v.poster=cover(cur)}v.play&&v.play().catch(()=>{})}else{v.hidden=true;v.pause&&v.pause();$("#csImg").hidden=false;$("#csImg").src=sv}$("#csImg").classList.toggle("round",isRound(sv));$("#csImg").alt=`${pf(cur,"title")}, ${idx+1} / ${n}`;$("#ct").textContent=`${idx+1} / ${n}`;$("#prog").style.width=((idx+1)/n*100)+"%";
  const one=n<2;$("#pv").hidden=one;$("#nx").hidden=one;
  $("#thumbs").querySelectorAll("button").forEach((b,i)=>{b.setAttribute("aria-current",i===idx);if(i===idx)b.scrollIntoView({block:"nearest",inline:"nearest"})})}
+
+/* ===== interactive prototypes ===== */
+const NAVP=[[27,87,15,10,"settings"],[42,87,15,10,"home"],[57,87,15,10,"saved"]];
+const PROTO={
+ pe:{ar:"600/1298",anim:"vid/pe-intro.mp4",start:"onb1",pre:"img/pe-",s:{
+  onb1:[[66,85,32,11,"onb2"]],onb2:[[66,85,32,11,"onb3"]],onb3:[[66,85,32,11,"login"]],
+  login:[[16,63,68,10,"info"],[16,78,68,6,"info"]],info:[[16,75,68,10,"home"]],
+  home:[[3,64,45,12,"info"],[50,64,47,12,"read"],[3,76,45,12,"listen"],[50,76,47,12,"read"],[3,12,26,7,"weekly"],...NAVP],
+  weekly:[[3,64,45,12,"info"],[50,64,47,12,"read"],[3,76,45,12,"listen"],[50,76,47,12,"read"],[3,12,28,7,"home"],...NAVP],
+  read:[[1,4,15,8,"home"],[11,72,26,6,"read_pop"],[60,76,20,5,"read_pop"],[37,89,60,9,"done"]],
+  read_pop:[[2,76,96,11,"read"],[1,4,15,8,"home"],[37,89,60,9,"done"]],
+  done:[[8,83,84,9,"home"],[28,92,44,6,"read"]],
+  listen:[[1,4,15,8,"home"],[8,89,84,9,"done"]],
+  saved:[...NAVP],settings:[[3,80,94,8,"login"],...NAVP]}},
+ emb:{ar:"750/1581",anim:"vid/emb-anim.mp4",start:"onb1",pre:"img/emb-",s:{
+  onb1:[[9,76,82,9,"onb2"]],onb2:[[9,76,82,9,"onb3"]],onb3:[[9,76,82,9,"login"]],
+  login:[[9,72,82,7,"home"],[9,79,82,7,"home"]],
+  home:[[4,29,92,30,"detail"],[4,63,44,29,"detail"],[51,63,45,29,"detail"],[55,89,18,10,"checkout"]],
+  detail:[[0,5,16,8,"home"],[36,87,58,10,"checkout"],[3,87,24,10,"checkout"]],
+  checkout:[[0,5,16,7,"detail"],[4,86,92,9,"home"]]}},
+ asf:{ar:"750/1498",anim:"vid/asf-anim.mp4",start:"onb1",pre:"img/asf-",s:{
+  onb1:[[8,87,84,10,"onb2"]],onb2:[[8,87,84,10,"onb3"]],onb3:[[8,87,84,10,"login"]],
+  login:[[7,77,86,9,"home"],[7,68,86,9,"home"]],
+  home:[[8,64,53,27,"detail"],[63,64,37,27,"detail"]],
+  detail:[[0,6,15,8,"home"],[60,88,38,10,"home"]]}}
+};
+let PR=null,pScreen=null,hintT=0;
+function pShow(name){const c=PROTO[PR];pScreen=name;const im=$("#pImg");im.classList.add("fade");
+ setTimeout(()=>{im.src=c.pre+name+".webp";im.onload=()=>im.classList.remove("fade")},reduce?0:140);
+ $("#pHs").innerHTML=c.s[name].map(([x,y,w,h,to])=>`<button type="button" data-to="${to}" style="left:${x}%;top:${y}%;width:${w}%;height:${h}%" aria-label="${to}"></button>`).join("")}
+function pInteractive(){const v=$("#pVid");v.pause();v.hidden=true;$("#pImg").hidden=false;$("#pChip").classList.add("on");$("#pSkip").hidden=true;pShow(PROTO[PR].start)}
+function pStart(){const c=PROTO[PR],v=$("#pVid"),L=u();$("#pChip").textContent=L.pTry;$("#pChip").classList.remove("on");$("#pSkip").textContent=L.pSkip;$("#pRe").textContent="↺ "+L.pRe;
+ $("#pHs").innerHTML="";$("#pImg").hidden=true;$("#pSkip").hidden=false;v.hidden=false;v.src=c.anim;v.currentTime=0;
+ v.onended=pInteractive;v.onerror=pInteractive;const pr=v.play();pr&&pr.catch(()=>pInteractive())}
+function openProto(id){PR=id;const c=PROTO[id];$("#pPh").style.aspectRatio=c.ar;Object.keys(c.s).forEach(n=>{const i=new Image();i.src=c.pre+n+".webp"});pStart()}
+$("#pHs").onclick=e=>{const b=e.target.closest("button");if(b){pShow(b.dataset.to)}else{const h=$("#pHs");h.classList.add("hint");clearTimeout(hintT);hintT=setTimeout(()=>h.classList.remove("hint"),700)}};
+$("#pSkip").onclick=pInteractive;$("#pRe").onclick=pStart;
 function step(d){if(!cur)return;idx=(idx+d+cur.imgs.length)%cur.imgs.length;paint()}
 $("#pv").onclick=()=>step(-1);$("#nx").onclick=()=>step(1);
 $("#thumbs").onclick=e=>{const b=e.target.closest("button");if(b){idx=+b.dataset.k;paint()}};
-$("#csClose").onclick=()=>{hide("#cs");lastC&&lastC.focus()};$("#svClose").onclick=()=>hide("#sv");
+$("#csClose").onclick=()=>{$("#pVid").pause();hide("#cs");lastC&&lastC.focus()};$("#svClose").onclick=()=>hide("#sv");
 document.addEventListener("keydown",e=>{if(!$("#cs").hidden){if(e.key==="Escape"){hide("#cs")}else if(e.key==="ArrowRight")step(1);else if(e.key==="ArrowLeft")step(-1)}else if(!$("#sv").hidden&&e.key==="Escape")hide("#sv")});
 let tx=null;$("#csImg").addEventListener("touchstart",e=>tx=e.touches[0].clientX,{passive:true});
 $("#csImg").addEventListener("touchend",e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>40)step(d<0?1:-1);tx=null});
