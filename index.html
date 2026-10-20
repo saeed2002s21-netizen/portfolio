@@ -435,13 +435,13 @@ html[lang="ar"] .cshead h2{letter-spacing:0;line-height:1.25}
 .cshead .sub{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);margin-top:10px;max-width:60ch}
 .stage.cf{background:none!important;padding:14px 0 18px;overflow:hidden}
 .stage.cf #csImg,.stage.cf #csVid,.stage:not(.cf) .cft{display:none!important}
-.cft{--cw:min(400px,64vw);position:relative;width:100%;height:calc(var(--cw)*1.25);touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.cft img{position:absolute;left:50%;top:0;width:var(--cw);aspect-ratio:4/5;object-fit:cover;border-radius:16px;box-shadow:0 22px 40px -22px rgba(0,0,0,.45);transform:translateX(calc(-50% + var(--d,0)*84% + var(--dx,0px))) scale(.74);opacity:.38;transition:transform .55s cubic-bezier(.22,.8,.2,1),opacity .55s,filter .55s;cursor:pointer;z-index:1;max-width:none;max-height:none;-webkit-user-drag:none}
+.cft{--cw:min(320px,52vw);position:relative;width:100%;height:calc(var(--cw)*1.25);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.cft img{position:absolute;left:50%;top:0;width:var(--cw);aspect-ratio:4/5;object-fit:cover;border-radius:16px;box-shadow:0 22px 40px -22px rgba(0,0,0,.45);transform:translateX(calc(-50% + var(--d,0)*var(--sp,68%) + var(--dx,0px))) scale(.78);opacity:.38;transition:transform .55s cubic-bezier(.22,.8,.2,1),opacity .55s,filter .55s;cursor:pointer;z-index:1;max-width:none;max-height:none;-webkit-user-drag:none}
 .cft img.c{transform:translateX(calc(-50% + var(--dx,0px))) scale(1);opacity:1;z-index:2;cursor:grab}
 .cft img.far{opacity:0;pointer-events:none}
 .cft.drag img{transition:none}
 .stage.cf .nv{z-index:3}.stage.cf .prog{display:none}
-@media (max-width:560px){.cft{--cw:66vw}.cft img{border-radius:12px}}
+@media (max-width:560px){.cft{--cw:44vw;--sp:58%}.cft img{border-radius:12px}}
 .stage{position:relative;border-radius:var(--r);background:var(--c);overflow:hidden;display:grid;place-items:center;padding:clamp(14px,3vw,40px)}
 .stage img{max-width:100%;max-height:72vh;border-radius:10px;box-shadow:0 24px 40px -24px rgba(0,0,0,.5)}
 .stage.deck{background:#16161A;padding:clamp(10px,2vw,28px)}
