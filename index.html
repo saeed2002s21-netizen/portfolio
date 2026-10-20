@@ -433,6 +433,15 @@ html[lang="ar"] .card h3{letter-spacing:0;line-height:1.4}
 .cshead h2{font-size:clamp(40px,7vw,104px);letter-spacing:-.05em;margin-top:14px}
 html[lang="ar"] .cshead h2{letter-spacing:0;line-height:1.25}
 .cshead .sub{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);margin-top:10px;max-width:60ch}
+.stage.cf{background:none!important;padding:14px 0 18px;overflow:hidden}
+.stage.cf #csImg,.stage.cf #csVid,.stage:not(.cf) .cft{display:none!important}
+.cft{--cw:min(400px,64vw);position:relative;width:100%;height:calc(var(--cw)*1.25);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.cft img{position:absolute;left:50%;top:0;width:var(--cw);aspect-ratio:4/5;object-fit:cover;border-radius:16px;box-shadow:0 22px 40px -22px rgba(0,0,0,.45);transform:translateX(calc(-50% + var(--d,0)*84% + var(--dx,0px))) scale(.74);opacity:.38;transition:transform .55s cubic-bezier(.22,.8,.2,1),opacity .55s,filter .55s;cursor:pointer;z-index:1;max-width:none;max-height:none;-webkit-user-drag:none}
+.cft img.c{transform:translateX(calc(-50% + var(--dx,0px))) scale(1);opacity:1;z-index:2;cursor:grab}
+.cft img.far{opacity:0;pointer-events:none}
+.cft.drag img{transition:none}
+.stage.cf .nv{z-index:3}.stage.cf .prog{display:none}
+@media (max-width:560px){.cft{--cw:66vw}.cft img{border-radius:12px}}
 .stage{position:relative;border-radius:var(--r);background:var(--c);overflow:hidden;display:grid;place-items:center;padding:clamp(14px,3vw,40px)}
 .stage img{max-width:100%;max-height:72vh;border-radius:10px;box-shadow:0 24px 40px -24px rgba(0,0,0,.5)}
 .stage.deck{background:#16161A;padding:clamp(10px,2vw,28px)}
@@ -534,7 +543,7 @@ html[lang="ar"] .facts h4{letter-spacing:0;font-size:14px}
   <div class="ovbar"><div class="wrap"><div class="crumb"><span id="csCat"></span><span>/</span><b id="csCrumb"></b></div><button class="chipbtn" type="button" id="csClose" data-i="close">Close</button></div></div>
   <div class="wrap">
     <div class="cshead"><div class="mt" id="csMeta"></div><h2 id="csT"></h2><p class="sub" id="csSub"></p></div>
-    <div class="stage" id="stage"><img id="csImg" alt=""><video id="csVid" muted loop playsinline autoplay hidden></video><button class="nv pv" type="button" id="pv" aria-label="Previous"></button><button class="nv nx" type="button" id="nx" aria-label="Next"></button><span class="ct" id="ct"></span><span class="prog"><i id="prog"></i></span></div>
+    <div class="stage" id="stage"><div class="cft" id="cft"></div><img id="csImg" alt=""><video id="csVid" muted loop playsinline autoplay hidden></video><button class="nv pv" type="button" id="pv" aria-label="Previous"></button><button class="nv nx" type="button" id="nx" aria-label="Next"></button><span class="ct" id="ct"></span><span class="prog"><i id="prog"></i></span></div>
     <div class="thumbs" id="thumbs"></div>
     <div class="story"><div class="facts" id="facts"></div><div class="blocks" id="blocks"></div></div>
   </div>
@@ -612,7 +621,7 @@ const P=[
   outcome:"A handmade piece in a wooden hoop, made in about 15 hours. It is now offered as an original artwork in my shop, Saeedarty.",
   tools:["Punch Needle","Embroidery","Fabric & threads","Wooden embroidery hoop"],
   role:"Concept, composition, colour, and full hand execution.",type:"Personal art project"},
- {id:"coffeeposts",cat:"graphic",title:"Specialty Coffee Posts",sub:"Social media designs · Arabic",year:"2026",
+ {id:"coffeeposts",cat:"graphic",carousel:true,title:"Specialty Coffee Posts",sub:"Social media designs · Arabic",year:"2026",
   imgs:["img/coffee-dallah.webp","img/coffee-iced-latte.webp","img/coffee-v60.webp","img/coffee-cold-brew.webp"],
   overview:"A set of four Instagram posts for specialty coffee drinks, from Arabic coffee to cold brew.",
   challenge:"Make every drink feel tempting and distinct while the four posts still read as one feed.",
@@ -620,7 +629,7 @@ const P=[
   outcome:"A consistent post series ready for a café feed, which I also use as samples for my social media design service.",
   tools:["Graphic design","Arabic typography","Social media"],
   role:"Concept, layout, typography and final design.",type:"Sample project"},
- {id:"suposts",cat:"graphic",title:"SOH Social Posts",sub:"Instagram campaign · burger restaurant",year:"2026",
+ {id:"suposts",cat:"graphic",carousel:true,title:"SOH Social Posts",sub:"Instagram campaign · burger restaurant",year:"2026",
   imgs:["img/su-01-truffle-burger.webp","img/su-04-beef-vs-chicken.webp","img/su-05-crunch.webp","img/su-06-sauces.webp","img/su-07-fridge.webp","img/su-02-wheel-soh-burger.webp","img/su-03-screen-to-hand.webp"],
   overview:"Seven Instagram posts for SOH, a burger restaurant in Makkah, built around its interactive touch-screen menu.",
   challenge:"Promote a new way of ordering, an in-store touch screen, while staying inside the restaurant's bold red identity.",
@@ -893,16 +902,30 @@ function openCase(id){cur=P.find(p=>p.id===id);if(!cur)return;$("#cs").dataset.k
  const k=cur.cat;$("#csCat").textContent=L.sec[k];$("#csCrumb").textContent=pf(cur,"title");
  $("#csMeta").innerHTML=[L.sec[k],pf(cur,"type")].map(x=>`<span>${esc(x)}</span>`).join("")+(cur.wip?`<span class="wipchip">${L.wip}</span>`:"");
  $("#csT").textContent=pf(cur,"title");$("#csSub").textContent=pf(cur,"overview");{const old=document.getElementById("csTry");old&&old.remove();if((cur.tablet||cur.wip)&&cur.link){const a=document.createElement("a");a.id="csTry";a.className="btn dark";a.style.marginTop="18px";a.href=cur.link;a.target="_blank";a.rel="noopener";a.textContent=cur.wip?L.pepCs:L.tryMenu;$("#csSub").after(a)}}
- const deck=k==="pres"||cur.tablet;const st=$("#stage");st.className="stage"+(deck?" deck":k==="ui"?" phone":"");st.style.setProperty("--c",COL[k]);
+ const deck=k==="pres"||cur.tablet;const st=$("#stage");st.className="stage"+(deck?" deck":k==="ui"?" phone":"");if(cur.carousel){st.classList.add("cf");cfBuild()}else $("#cft").innerHTML="";$("#thumbs").hidden=!!cur.carousel;st.style.setProperty("--c",COL[k]);
  $("#pv").innerHTML=ARL;$("#nx").innerHTML=ARW;
  $("#thumbs").innerHTML=cur.imgs.map((s,i)=>`<button type="button" data-k="${i}" class="${isVid(s)?"tv":""}" style="--ta:${deck?"16/9":isTall(s)?"4/5":"1"}" aria-label="${isVid(s)?L.vid:deck?L.slide:L.img} ${i+1}"><img src="${isVid(s)?cover(cur):s}" alt="" loading="lazy"></button>`).join("");
  $("#facts").innerHTML=`<div><h4>${L.cs.role}</h4><p>${esc(pf(cur,"role"))}</p></div><div><h4>${L.cs.tools}</h4><div class="tags">${pf(cur,"tools").map(t=>`<span>${esc(t)}</span>`).join("")}</div></div><div><h4>${L.cs.type}</h4><p>${esc(pf(cur,"type"))}</p></div>`+(cur.link?`<div><a class="btn dark" href="${cur.link}" target="_blank" rel="noopener">${cur.tablet?L.tryMenu:cur.wip?L.pepCs:L.full}</a></div>`:"");
  $("#blocks").innerHTML=[["ch","challenge"],["ap","approach"],["oc","outcome"]].map(([h,f])=>`<div><h3><i></i>${L.cs[h]}</h3><p>${esc(pf(cur,f))}</p></div>`).join("");
  paint();show("#cs");$("#csClose").focus()}
-function paint(){const n=cur.imgs.length;const sv=cur.imgs[idx],v=$("#csVid");if(isVid(sv)){v.hidden=false;$("#csImg").hidden=true;if(v.getAttribute("src")!==sv){v.src=sv;v.poster=cover(cur)}v.play&&v.play().catch(()=>{})}else{v.hidden=true;v.pause&&v.pause();$("#csImg").hidden=false;$("#csImg").src=sv}$("#csImg").classList.toggle("round",isRound(sv));$("#csImg").alt=`${pf(cur,"title")}, ${idx+1} / ${n}`;$("#ct").textContent=`${idx+1} / ${n}`;$("#prog").style.width=((idx+1)/n*100)+"%";
+function paint(){const n=cur.imgs.length;if(cur.carousel){$("#csVid").pause&&$("#csVid").pause();cfLay();$("#ct").textContent=`${idx+1} / ${n}`;$("#prog").style.width=((idx+1)/n*100)+"%";$("#pv").hidden=n<2;$("#nx").hidden=n<2;return}const sv=cur.imgs[idx],v=$("#csVid");if(isVid(sv)){v.hidden=false;$("#csImg").hidden=true;if(v.getAttribute("src")!==sv){v.src=sv;v.poster=cover(cur)}v.play&&v.play().catch(()=>{})}else{v.hidden=true;v.pause&&v.pause();$("#csImg").hidden=false;$("#csImg").src=sv}$("#csImg").classList.toggle("round",isRound(sv));$("#csImg").alt=`${pf(cur,"title")}, ${idx+1} / ${n}`;$("#ct").textContent=`${idx+1} / ${n}`;$("#prog").style.width=((idx+1)/n*100)+"%";
  const one=n<2;$("#pv").hidden=one;$("#nx").hidden=one;
  $("#thumbs").querySelectorAll("button").forEach((b,i)=>{b.setAttribute("aria-current",i===idx);if(i===idx)b.scrollIntoView({block:"nearest",inline:"nearest"})})}
 
+
+/* ===== posts carousel ===== */
+function cfBuild(){const T=$("#cft");T.innerHTML=cur.imgs.map((s,i)=>`<img src="${s}" alt="${esc(pf(cur,"title"))} ${i+1}" data-i="${i}" draggable="false">`).join("")}
+function cfLay(){const T=$("#cft"),n=cur.imgs.length;[...T.children].forEach((el,i)=>{let d=((i-idx)%n+n)%n;if(d>n/2)d-=n;const r=el._r;
+ if(Math.abs(d)<=1){if(r!==undefined&&Math.abs(d-r)>1.5){el.style.transition="none";el.style.setProperty("--d",d>0?2:-2);el.classList.add("far");el.offsetWidth;el.style.transition=""}el._r=d;el.style.setProperty("--d",d)}
+ else{const s=(r!==undefined&&Math.abs(r)<=1&&r!==0)?Math.sign(r):(r===0?Math.sign(d):Math.sign(d));if(!(r!==undefined&&Math.abs(r)<=1))el.style.transition="none";el.style.setProperty("--d",2*s);el._r=2*s;el.offsetWidth;el.style.transition=""}
+ el.classList.toggle("c",d===0);el.classList.toggle("far",Math.abs(d)>1)})}
+(()=>{const T=$("#cft");let x0=null,dx=0,id=null;
+ T.addEventListener("pointerdown",e=>{if(!cur||!cur.carousel)return;x0=e.clientX;dx=0;id=e.pointerId});
+ T.addEventListener("pointermove",e=>{if(x0===null||e.pointerId!==id)return;dx=e.clientX-x0;if(Math.abs(dx)>6){T.classList.add("drag");T.style.setProperty("--dx",dx+"px")}});
+ const end=e=>{if(x0===null)return;T.classList.remove("drag");T.style.setProperty("--dx","0px");const moved=Math.abs(dx)>6;
+  if(Math.abs(dx)>45)step(dx<0?1:-1);else if(!moved&&e.target.dataset&&e.target.dataset.i!==undefined){const i=+e.target.dataset.i;if(i!==idx){idx=i;paint()}}
+  x0=null;dx=0};
+ T.addEventListener("pointerup",end);T.addEventListener("pointercancel",end);T.addEventListener("pointerleave",e=>{if(e.pointerType==="mouse")end(e)});})();
 function step(d){if(!cur)return;idx=(idx+d+cur.imgs.length)%cur.imgs.length;paint()}
 $("#pv").onclick=()=>step(-1);$("#nx").onclick=()=>step(1);
 $("#thumbs").onclick=e=>{const b=e.target.closest("button");if(b){idx=+b.dataset.k;paint()}};
