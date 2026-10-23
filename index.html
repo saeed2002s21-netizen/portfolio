@@ -349,7 +349,7 @@ html[lang="ar"] .svhead h2{letter-spacing:0;line-height:1.25}
 #sv[data-k="graphic"] .card .im{background:none!important;aspect-ratio:auto;overflow:visible;display:block}
 #sv[data-k="graphic"] .card .im img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:14px;box-shadow:0 18px 34px -20px rgba(0,0,0,.45);display:block}
 #sv[data-k="graphic"] .card:hover .im img{transform:translateY(-4px)}
-#sv[data-k="graphic"] .card .tx{padding:14px 2px 6px}
+#sv[data-k="graphic"] .card .tx{order:-1;padding:0 2px 14px}
 #sv[data-k="graphic"] .card .tx p{display:none}
 @media(min-width:900px){#sv[data-k="graphic"] .cards{grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:start}#sv[data-k="graphic"] .card{grid-column:auto!important}}
 #sv[data-k="art"] .card{background:none;border:0;box-shadow:none;overflow:visible}
@@ -637,14 +637,14 @@ const P=[
   outcome:"A ready-to-post campaign that ties the restaurant's feed to the in-store menu experience.",
   tools:["Graphic design","Social media","Arabic typography"],
   role:"Post concepts, layout and design. The SOH logo and brand identity belong to the restaurant.",type:"Concept project"},
- {id:"digital",cat:"graphic",lg:true,title:"Unspoken Designs & Pattern",sub:"Printable collection",year:"2026",
-  imgs:["img/g-pillow.jpg","img/g-tote.jpg","img/g-tee.jpg","img/g-frame.jpg","img/u-digital-01-digital-download.jpg","img/u-digital-04-embroidery-pattern-result.jpg"],
-  overview:"A digital collection of four printable designs and one embroidery pattern, developed from the Unspoken artwork.",
-  challenge:"Translate a textured, handmade piece into flat graphics that still feel minimal and meaningful, and that work across different products.",
-  approach:"I redrew the forms as clean graphic shapes, built four variations, and prepared an embroidery pattern so others can recreate the piece. I then presented the designs on a cap, pillow, sweatshirt, tote bag, and framed print to show how the system adapts.",
-  outcome:"A ready-to-download PDF pack sold in my shop, plus a consistent set of product mockups that show the designs in use.",
-  tools:["Graphic design","Pattern design","Product mockups","Print-ready PDF"],
-  role:"Design of all graphics, the pattern, and the product presentation.",type:"Personal product"},
+ {id:"sipsposts",cat:"graphic",carousel:true,title:"Sipsss Café Posts",sub:"Instagram posts · café",year:"2026",
+  imgs:["img/sips-dolce.webp","img/sips-weekend.webp","img/sips-pecan.webp","img/sips-berry.webp","img/sips-hibiscus.webp","img/sips-founding-day.webp"],
+  overview:"Six Instagram posts for Sipsss, a café, covering its desserts, a cold drink, a weekend special and Founding Day.",
+  challenge:"Give every item its own mood so the feed never feels repetitive, while the café's name and voice stay the same in every post.",
+  approach:"Each post gets its own palette taken from the item itself: deep burgundy for the Dolce cake, warm butter yellow for the weekend banana pudding, soft green for the pecan pudding, blush pink for the berry cheesecake and a spotlight on black for iced hibiscus. Clean cut-out food photos, bold Arabic headlines and one short line of ingredients keep each post simple, and the Founding Day post uses earthy textures and Najdi-style shapes.",
+  outcome:"A varied, ready-to-post set for a café feed, from menu items to a national occasion.",
+  tools:["Graphic design","Arabic typography","Social media"],
+  role:"Post concepts, layout, typography and final design.",type:"Concept project"},
  {id:"qafila",cat:"pres",title:"Qafilat Al-Tayeb",sub:"Interactive presentation · Interactive stories · Arabic",year:"2026",
   imgs:["img/qaf-1.jpg","img/qaf-2.jpg","img/qaf-3.jpg","img/qaf-4.jpg","img/qaf-5.jpg"],
   overview:"An illustrated, interactive presentation that tells the story of the ancient incense route and the caravans that crossed the Arabian Peninsula.",
@@ -716,6 +716,11 @@ const AR_P={
   approach:"كل بوست يأخذ لحظة من المنيو: برجر الترفل، ولحم ضد دجاج، والصوصات، وثلاجة المشروبات، وعجلة «محتار؟». وتجمع البوستات صور الأكل الحقيقية مع ألوان سو الأحمر والكريمي والفحمي وعناوين عربية مرحة.",
   outcome:"حملة جاهزة للنشر تربط حساب المطعم بتجربة المنيو داخل المحل.",
   tools:["تصميم جرافيك","سوشال ميديا","الطباعة العربية"],role:"أفكار البوستات والتخطيط والتصميم. شعار سو وهويته البصرية ملك للمطعم.",type:"مشروع مفاهيمي"},
+ sipsposts:{title:"بوستات سيبس",sub:"بوستات إنستقرام · مقهى",overview:"ستة بوستات إنستقرام لمقهى سيبس، تشمل حلوياته ومشروبًا باردًا وعرض الويكند ويوم التأسيس.",
+  challenge:"أن يكون لكل صنف مزاجه الخاص فلا يبدو الحساب مكررًا، مع بقاء اسم المقهى وأسلوبه ثابتًا في كل بوست.",
+  approach:"لكل بوست ألوانه المأخوذة من الصنف نفسه: العنابي الغامق لكيكة دولتشي، والأصفر الزبدي لبودينغ البنانا في عرض الويكند، والأخضر الهادئ لبودينغ البيكان، والوردي الناعم لتشيز التوت، وإضاءة على خلفية سوداء للكركديه البارد. صور أصناف مفرّغة ونظيفة، وعنوان عربي عريض، وسطر قصير بالمكونات. وبوست يوم التأسيس بخامات ترابية وأشكال مستوحاة من العمارة النجدية.",
+  outcome:"مجموعة متنوعة جاهزة للنشر في حساب مقهى، من أصناف المنيو إلى مناسبة وطنية.",
+  tools:["تصميم جرافيك","الطباعة العربية","سوشال ميديا"],role:"فكرة البوستات والتخطيط والطباعة والتصميم النهائي.",type:"مشروع تصوّري"},
  king:{title:"لوحة الملك سلمان",sub:"تطريز يدوي",overview:"بورتريه للملك سلمان مطرّز باليد داخل إطار دائري أسود.",
   challenge:"التقاط ملامح وجه معروف بخطوط قليلة وواضحة تُقرأ من بعيد دون أن يضيع الشبه.",
   approach:"اختصرت البورتريه إلى خط أسود نظيف على قماش أبيض، وتركت اللون لتفصيلة واحدة فقط: الذهبي في حاشية البشت بنقشة متقاطعة.",
@@ -741,11 +746,6 @@ const AR_P={
   approach:"تكوين تجريدي يترك المعنى مفتوحًا ليكوّن كل مشاهد قراءته الخاصة. استخدمت حلقات البانش نيدل لبناء سطح بارز وغني، واخترت لوحة ألوان دافئة ومتوازنة من البرتقالي المحروق على قماش طبيعي، مع خط أسود رفيع يرسم شكل المزهرية.",
   outcome:"قطعة يدوية في طارة خشبية، استغرق تنفيذها نحو 15 ساعة، وهي معروضة الآن كعمل فني أصلي في متجري Saeedarty.",
   tools:["بانش نيدل","تطريز","قماش وخيوط","طارة تطريز خشبية"],role:"الفكرة والتكوين والألوان والتنفيذ اليدوي كاملًا.",type:"مشروع فني شخصي"},
- digital:{title:"تصاميم ونمط «ما لم يُقَل»",sub:"مجموعة قابلة للطباعة",overview:"مجموعة رقمية من أربعة تصاميم قابلة للطباعة ونمط تطريز واحد، مطوّرة من عمل «ما لم يُقَل» الفني.",
-  challenge:"تحويل قطعة يدوية غنية بالملمس إلى رسومات مسطحة تبقى بسيطة وذات معنى، وتعمل على منتجات مختلفة.",
-  approach:"أعدت رسم الأشكال كأشكال جرافيكية نظيفة، وبنيت أربع تنويعات، وجهّزت نمط تطريز يتيح للآخرين إعادة تنفيذ القطعة. ثم عرضت التصاميم على قبعة ووسادة وسويت شيرت وحقيبة ولوحة مؤطرة لأُظهر كيف يتكيّف النظام.",
-  outcome:"حزمة PDF جاهزة للتحميل تُباع في متجري، مع مجموعة متناسقة من النماذج تُظهر التصاميم أثناء الاستخدام.",
-  tools:["تصميم جرافيك","تصميم الأنماط","نماذج المنتجات (Mockups)","ملف PDF جاهز للطباعة"],role:"تصميم جميع الرسومات والنمط وطريقة عرض المنتجات.",type:"منتج شخصي"},
  qafila:{title:"قافلة الطيب",sub:"عرض تقديمي تفاعلي · قصص تفاعلية · بالعربي",overview:"عرض تقديمي تفاعلي مرسوم يحكي قصة طريق البخور القديم والقوافل التي عبرت الجزيرة العربية.",
   challenge:"تحويل درس تاريخي عن تجارة البخور إلى رحلة يتابعها الجمهور حتى النهاية، بدل قائمة من التواريخ وأسماء الأماكن.",
   approach:"صممت العرض كرحلة داخل مشهد صحراوي واحد متصل: ألوان رملية دافئة، وشمس وكثبان تستمر في كل الشرائح، وجمال وعناصر مرسومة. كل فصل محطة على الطريق: حكاية طريق البخور، ثم محطات الرحلة على خريطة منقطة من ظفار إلى غزة، ثم حمولة القافلة من اللبان والمرّ والتوابل.",
@@ -833,7 +833,7 @@ const u=()=>T[LANG];
 const pf=(p,f)=>LANG==="ar"&&AR_P[p.id]&&AR_P[p.id][f]!==undefined?AR_P[p.id][f]:p[f];
 const area=k=>{const a=AREAS.find(x=>x.k===k);return LANG==="ar"?Object.assign({},a,AR_AREAS[k]):a};
 const list=k=>P.filter(p=>p.cat===k);
-const isTall=s=>/\/(pe-|emb-|asf-|su-|coffee-[a-z]|g-tote|g-tee)/.test(s)||isVid(s);
+const isTall=s=>/\/(pe-|emb-|asf-|su-|sips-|coffee-[a-z]|g-tote|g-tee)/.test(s)||isVid(s);
 const isVid=s=>/\.mp4$/.test(s);
 const isRound=s=>/\/(art-|hoop\.webp)/.test(s);
 const cover=p=>p.poster||p.imgs.find(s=>!isVid(s));
