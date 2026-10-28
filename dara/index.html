@@ -280,7 +280,7 @@ dialog button{position:absolute;top:10px;left:10px;width:40px;height:40px;border
 
 
 <section>
-  <div class="sec-h"><p class="eyebrow">نموذج كاروسيل</p><h2>يومك جنب الحرم</h2><p>ست صفحات يربطها خط واحد من الفجر لين الليل. اسحب يميناً ويساراً.</p></div>
+  <div class="sec-h"><p class="eyebrow">نموذج كاروسيل</p><h2>يومك جنب الحرم</h2><p>ست صفحات يربطها خط واحد من الفجر لين الليل.</p></div>
   <div class="car"><img src="c/c1.jpg" alt="صفحة 1 من الكاروسيل" loading="lazy" width="1080" height="1350"><img src="c/c2.jpg" alt="صفحة 2 من الكاروسيل" loading="lazy" width="1080" height="1350"><img src="c/c3.jpg" alt="صفحة 3 من الكاروسيل" loading="lazy" width="1080" height="1350"><img src="c/c4.jpg" alt="صفحة 4 من الكاروسيل" loading="lazy" width="1080" height="1350"><img src="c/c5.jpg" alt="صفحة 5 من الكاروسيل" loading="lazy" width="1080" height="1350"><img src="c/c6.jpg" alt="صفحة 6 من الكاروسيل" loading="lazy" width="1080" height="1350"></div>
   <div class="cap car-cap"><span class="cl">الكابشن</span><p>من الفجر بالحرم، لين قهوة الصبح في بلكونتك، ومشاويرك كلها قريبة. هذا يومك مع دارا. وأنت وش أول شي تسويه في يومك؟ قول لنا في الكومنت.<br><span class="tags">للتواصل: <bdi dir="ltr">800 301 1117</bdi><br>#دارا_للتطوير_العقاري #مكة_المكرمة #شقق_مكة</span></p></div>
 </section>
@@ -372,6 +372,13 @@ const lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
 document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{lbi.src=b.dataset.src;lbi.alt=b.getAttribute('aria-label');lb.showModal()}));
 document.getElementById('lbx').addEventListener('click',()=>lb.close());
 lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+const car=document.querySelector('.car');
+if(car){let timer=null,idx=0,user=false;
+  const slides=[...car.querySelectorAll('img')];
+  const go=()=>{idx=(idx+1)%slides.length; car.scrollTo({left:slides[idx].offsetLeft-car.offsetLeft,behavior:'smooth'});};
+  const start=()=>{if(!timer&&!user) timer=setInterval(go,2400)}; const stop=()=>{clearInterval(timer);timer=null};
+  ['pointerdown','wheel','touchstart'].forEach(ev=>car.addEventListener(ev,()=>{user=true;stop()},{passive:true}));
+  if('IntersectionObserver' in window){new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?start():stop()),{threshold:.5}).observe(car)}else start();}
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!rm && 'IntersectionObserver' in window){
   const els=[...document.querySelectorAll('.month .post, .id-row, .idea-row > div, .sched, .ig-wrap, .pair, .vid, .pkg')];
