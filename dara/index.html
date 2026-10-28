@@ -151,11 +151,11 @@ section{padding-block:56px;border-top:1px solid var(--line)}
 .cap .cl{display:block;color:var(--green);font-weight:600;font-size:12.5px}
 .cap p{margin-top:6px;line-height:1.65;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
 .cap .tags{color:var(--gold);font-size:12.5px;direction:rtl}
-.car{overflow:hidden;border-radius:14px;direction:ltr;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.car-track{display:flex;gap:0;width:max-content;animation:carmove 42s linear infinite}
-.car:hover .car-track{animation-play-state:paused}
-.car-track img{flex:none;width:340px;height:auto;display:block}
-@keyframes carmove{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.car{overflow-x:auto;overflow-y:hidden;border-radius:14px;direction:ltr;scrollbar-width:none;cursor:grab;touch-action:pan-x;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.car::-webkit-scrollbar{display:none}
+.car.drag{cursor:grabbing}
+.car-track{display:flex;flex-direction:row-reverse;width:max-content}
+.car-track img{flex:none;width:340px;height:auto;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
 .car-cap{max-width:640px;margin-top:14px}
 /* before / after */
 .ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
@@ -283,7 +283,7 @@ dialog button{position:absolute;top:10px;left:10px;width:40px;height:40px;border
 
 
 <section>
-  <div class="sec-h"><p class="eyebrow">نموذج كاروسيل</p><h2>يومك جنب الحرم</h2><p>ست صفحات يربطها خط واحد من الفجر لين الليل.</p></div>
+  <div class="sec-h"><p class="eyebrow">نموذج كاروسيل</p><h2>يومك جنب الحرم</h2><p>ست صفحات يربطها خط واحد من الفجر لين الليل. تقدر توقفها وتسحبها بيدك.</p></div>
   <div class="car"><div class="car-track"><img src="c/c1.jpg" alt="" width="1080" height="1350"><img src="c/c2.jpg" alt="" width="1080" height="1350"><img src="c/c3.jpg" alt="" width="1080" height="1350"><img src="c/c4.jpg" alt="" width="1080" height="1350"><img src="c/c5.jpg" alt="" width="1080" height="1350"><img src="c/c6.jpg" alt="" width="1080" height="1350"><img src="c/c1.jpg" alt="" width="1080" height="1350"><img src="c/c2.jpg" alt="" width="1080" height="1350"><img src="c/c3.jpg" alt="" width="1080" height="1350"><img src="c/c4.jpg" alt="" width="1080" height="1350"><img src="c/c5.jpg" alt="" width="1080" height="1350"><img src="c/c6.jpg" alt="" width="1080" height="1350"></div></div>
   <div class="cap car-cap"><span class="cl">الكابشن</span><p>من الفجر بالحرم، لين قهوة الصبح في بلكونتك، ومشاويرك كلها قريبة. هذا يومك مع دارا. وأنت وش أول شي تسويه في يومك؟ قول لنا في الكومنت.<br><span class="tags">للتواصل: <bdi dir="ltr">800 301 1117</bdi><br>#دارا_للتطوير_العقاري #مكة_المكرمة #شقق_مكة</span></p></div>
 </section>
@@ -375,6 +375,23 @@ const lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
 document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{lbi.src=b.dataset.src;lbi.alt=b.getAttribute('aria-label');lb.showModal()}));
 document.getElementById('lbx').addEventListener('click',()=>lb.close());
 lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+(()=>{const c=document.querySelector('.car'),t=document.querySelector('.car-track'); if(!c||!t)return;
+ let half=0,hold=false,last=0,pos=0,resume=0; const speed=0.045; // px per ms
+ const init=()=>{half=t.scrollWidth/2; pos=half-c.clientWidth; c.scrollLeft=pos};
+ const wrap=()=>{if(c.scrollLeft<=1) c.scrollLeft+=half; else if(c.scrollLeft>=t.scrollWidth-c.clientWidth-1) c.scrollLeft-=half; pos=c.scrollLeft};
+ const tick=ts=>{const dt=last?Math.min(64,ts-last):16; last=ts;
+   if(!hold && ts>resume){pos-=speed*dt; c.scrollLeft=pos; wrap()} else {pos=c.scrollLeft}
+   requestAnimationFrame(tick)};
+ let sx=0,sl=0,down=false;
+ c.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return; down=true;hold=true;sx=e.clientX;sl=c.scrollLeft;c.classList.add('drag');c.setPointerCapture(e.pointerId)});
+ c.addEventListener('pointermove',e=>{if(!down)return; c.scrollLeft=sl-(e.clientX-sx); wrap()});
+ const up=()=>{if(!down)return; down=false;c.classList.remove('drag');hold=false;resume=performance.now()+2500};
+ c.addEventListener('pointerup',up); c.addEventListener('pointercancel',up);
+ c.addEventListener('mouseenter',()=>{hold=true}); c.addEventListener('mouseleave',()=>{if(!down){hold=false;resume=performance.now()+600}});
+ c.addEventListener('touchstart',()=>{hold=true},{passive:true}); c.addEventListener('touchend',()=>{hold=false;resume=performance.now()+2500},{passive:true});
+ c.addEventListener('scroll',()=>{if(hold)wrap()},{passive:true});
+ const go=()=>{init(); requestAnimationFrame(tick)};
+ if(document.readyState==='complete') go(); else addEventListener('load',go);})();
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!rm && 'IntersectionObserver' in window){
   const els=[...document.querySelectorAll('.month .post, .id-row, .idea-row > div, .sched, .ig-wrap, .pair, .vid, .pkg')];
